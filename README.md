@@ -1,16 +1,65 @@
-# React + Vite
+# InvokeThoughts 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Invoke is a lightweight interface for capturing, refining, and organizing thoughts designed for agentic systems.
 
-Currently, two official plugins are available:
+Built with React and Node, it provides an intuitive playground for experimenting with prompts, structuring ideas, and preparing high-quality inputs for AI workflows.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Why Invoke? 🧠
 
-## React Compiler
+Modern AI systems are only as powerful as the instructions they receive.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+InvokeThoughts helps you:
 
-## Expanding the ESLint configuration
+- Capture structured thoughts before sending them to agents
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Experiment with prompt variations in a clean UI
+
+- Organize reusable prompt templates
+
+- Iterate quickly without context switching
+
+- It bridges the gap between raw ideas and production-ready prompts.
+
+## Who Is This For? 🎯
+
+- AI engineers building agent systems
+
+- Researchers iterating on prompt strategies
+
+- Hackathon teams prototyping AI products
+
+- Builders who want structured thinking before automation
+
+## What’s in It for You?
+
+- Explore a curated range of structured prompts designed to spark better thinking and more effective agent interactions.
+
+- Experiment, refine, and discover what truly resonates with you — and help us understand what makes you feel invoked.
+
+- Your feedback shapes the evolution of smarter, more intuitive AI workflows.
+
+## Environment variables
+
+This project uses Vite for the frontend. Client-side environment variables must be prefixed with `VITE_`.
+
+- Copy `.env.example` to `.env.local` and fill in your Firebase credentials.
+- Do NOT commit `.env.local` to your repository. `.gitignore` already ignores `.env.local` and `.env` files.
+
+Required variables (in `.env.local`):
+
+```
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=1:...:web:...
+VITE_FIREBASE_MEASUREMENT_ID=G-...
+```
+
+## Contributors
+
+- Zoya Jamadar ( Analyst @BlackRock | MS student at Georgia Teach )
+- Mohammad Saad Jamadar ( Grad Student at Keystone College Btech. AI & Data Sci. )
+- Shahid Shaikh ( Lead UX engineer )
+- Waseen Shaikh ( Advisor | Wadhwani Foundation )
