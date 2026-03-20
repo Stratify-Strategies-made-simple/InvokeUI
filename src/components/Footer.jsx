@@ -20,7 +20,6 @@ export const Footer = ({ onNavigate }) => {
             <ul className="space-y-2 text-sm text-gray-500">
                <li><button onClick={() => onNavigate('spaces')} className="hover:text-indigo-600 text-left">Spaces</button></li>
                <li><button onClick={() => onNavigate('library')} className="hover:text-indigo-600 text-left">Library</button></li>
-               <li><button className="hover:text-indigo-600 text-left">Extension</button></li>
             </ul>
           </div>
           <div>
@@ -28,17 +27,8 @@ export const Footer = ({ onNavigate }) => {
             <ul className="space-y-2 text-sm text-gray-500">
                <li><button onClick={() => onNavigate('privacy')} className="hover:text-indigo-600 text-left">Privacy Policy</button></li>
                <li><button className="hover:text-indigo-600 text-left">Terms of Service</button></li>
-               <li><button className="hover:text-indigo-600 text-left">Cookie Policy</button></li>
             </ul>
           </div>
-        </div>
-        <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-           <p>© 2026 Invoke Inc. All rights reserved.</p>
-           <div className="flex gap-4">
-              <span>Twitter</span>
-              <span>GitHub</span>
-              <span>Discord</span>
-           </div>
         </div>
       </div>
     </footer>

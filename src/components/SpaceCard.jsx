@@ -1,12 +1,6 @@
 import React from 'react';
-import { Lock, Bookmark, Trash2, Heart } from 'lucide-react';
-
-// Defined locally to ensure self-contained rendering
-const Badge = ({ children, className = "" }) => (
-  <span className={`px-2 py-0.5 text-[10px] font-bold rounded uppercase tracking-wider flex items-center gap-1 ${className}`}>
-    {children}
-  </span>
-);
+import { Bookmark, Trash2, Heart, Lock } from 'lucide-react';
+import { Badge } from './ui/Badge';
 
 export const SpaceCard = ({ card, user, savedItems, toggleSave, handleDeleteClick, setSelectedSpace }) => {
   const isOwner = user && (card.userId === user.uid);
@@ -47,7 +41,15 @@ export const SpaceCard = ({ card, user, savedItems, toggleSave, handleDeleteClic
          
          <div className="flex items-center justify-between pt-3 border-t border-white/20">
             <div className="flex items-center gap-2">
-               <img src={card.authorImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${card.author}`} className="w-5 h-5 rounded-full border border-white/30" alt="avatar"/>
+               <img 
+                 src={card.authorImage || `https://api.dicebear.com/9.x/avataaars/svg?seed=${card.author}`} 
+                 className="w-5 h-5 rounded-full border border-white/30" 
+                 alt="avatar"
+                 onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `https://api.dicebear.com/9.x/avataaars/svg?seed=${card.author}`;
+                 }}
+               />
                <span className="text-xs font-bold text-white/90 truncate max-w-[100px]">{card.author}</span>
             </div>
             <div className="flex items-center gap-3 text-xs font-bold">

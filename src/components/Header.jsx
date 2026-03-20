@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, Search, Box, Database, LogOut } from 'lucide-react';
+import { Zap, Search, LogOut } from 'lucide-react';
 
 export const Header = ({ 
   user, 
@@ -17,7 +17,7 @@ export const Header = ({
         <div className="flex items-center gap-8 flex-1">
           <div 
             className="flex items-center gap-2 cursor-pointer" 
-            onClick={() => { setCurrentView('spaces'); setSelectedSpace(null); }}
+            onClick={() => { setCurrentView('home'); setSelectedSpace(null); }}
           >
             <Zap className="w-5 h-5 text-orange-500 fill-current" />
             <span className="font-bold text-xl tracking-tight text-gray-900">Invoke</span>
@@ -38,11 +38,23 @@ export const Header = ({
         <div className="flex items-center gap-6">
             <div className="hidden lg:flex items-center gap-6">
               <button 
+                onClick={() => { setCurrentView('home'); setSelectedSpace(null); }}
+                className={`flex items-center gap-1.5 text-sm font-bold ${currentView === 'home' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                Home
+              </button>
+              <button 
                 onClick={() => { setCurrentView('spaces'); setSelectedSpace(null); }}
                 className={`flex items-center gap-1.5 text-sm font-bold ${currentView === 'spaces' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
               >
-                <Box className="w-4 h-4" /> Spaces
+                Spaces
               </button>
+              <button 
+            onClick={() => { setCurrentView('table'); }}
+            className={`font-semibold text-[15px] transition-colors ${currentView === 'table' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+          >
+            Dashboard
+          </button>
               <button 
                 onClick={() => { 
                   if(user) { setCurrentView('library'); setSelectedSpace(null); } 
@@ -50,19 +62,24 @@ export const Header = ({
                 }}
                 className={`flex items-center gap-1.5 text-sm font-bold ${currentView === 'library' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
               >
-                <Database className="w-4 h-4" /> Prompt Library
+                 Library
               </button>
             </div>
 
             {user ? (
               <div className="flex items-center gap-3">
                   <div className="text-right hidden sm:block">
-                     <div className="text-sm font-bold text-gray-900 leading-none">{user.displayName}</div>
+                      <div className="text-sm font-bold text-gray-900 leading-none">{user.displayName}</div>
                   </div>
                   <img 
-                    src={user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`} 
+                    src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.uid}`} 
                     alt="User" 
-                    className="w-8 h-8 rounded-full border border-gray-200" 
+                    className="w-8 h-8 rounded-full border border-gray-200 object-cover" 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                       e.target.onerror = null;
+                       e.target.src = `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.uid}`;
+                    }}
                   />
                   <button onClick={handleLogout} className="p-1.5 text-gray-400 hover:text-red-600 transition-colors">
                     <LogOut className="w-4 h-4" />

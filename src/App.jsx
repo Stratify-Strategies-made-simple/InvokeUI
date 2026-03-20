@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   signInWithPopup,
@@ -52,11 +53,37 @@ import {
   Lightbulb,
   ArrowRight,
 } from "lucide-react";
+=======
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 
-// ------------------------------------------------------------------
-// REUSABLE COMPONENTS
-// ------------------------------------------------------------------
+import { 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut, 
+  onAuthStateChanged
+} from "firebase/auth";
+import { 
+  collection, 
+  doc, 
+  setDoc, 
+  addDoc, 
+  deleteDoc, 
+  updateDoc, 
+  increment, 
+  arrayUnion, 
+  arrayRemove, 
+  onSnapshot, 
+  query, 
+  limit 
+} from "firebase/firestore";
 
+import { Tag } from 'lucide-react';
+>>>>>>> Stashed changes
+
+import { auth, db } from './firebase';
+import { MAIN_CATEGORIES } from './utils/constants';
+
+<<<<<<< Updated upstream
 const Badge = ({ children, className = "" }) => (
   <span
     className={`px-2 py-0.5 text-[10px] font-bold rounded uppercase tracking-wider flex items-center gap-1 ${className}`}
@@ -82,11 +109,29 @@ const Notification = ({ message, type = "success", onClose }) => (
     </button>
   </div>
 );
+=======
+import { Notification } from './components/ui/Notification';
+import { Header } from './components/Header';
+import { Sidebar } from './components/Sidebar';
+import { Footer } from './components/Footer';
+import { Chatbot } from './components/Chatbot';
 
-// ------------------------------------------------------------------
-// PAGE COMPONENTS (Home, Privacy, Footer)
-// ------------------------------------------------------------------
+import { DeleteModal } from './components/modals/DeleteModal';
+import { NewSpaceModal } from './components/modals/NewSpaceModal';
+import { AddPromptModal } from './components/modals/AddPromptModal';
+import { EditPromptModal } from './components/modals/EditPromptModal';
+import { NewCategoryModal } from './components/modals/NewCategoryModal';
+import { ManageCategoriesModal } from './components/modals/ManageCategoriesModal';
+>>>>>>> Stashed changes
 
+import { HomePage } from './pages/HomePage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicy';
+import { SpacesPage } from './pages/SpacesPage';
+import { TablePage } from './pages/TablePage';
+import { LibraryPage } from './pages/LibraryPage';
+import { SpaceDetailPage } from './pages/SpaceDetailPage';
+
+<<<<<<< Updated upstream
 const HomePage = ({ onNavigate, onLogin }) => {
   return (
     <div className="animate-fade-in">
@@ -993,6 +1038,16 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [autoCorrect, setAutoCorrect] = useState(false);
 
+=======
+export default function App() {
+  const [currentView, setCurrentView] = useState('home'); 
+  const [selectedCategory, setSelectedCategory] = useState('All'); 
+  const [selectedSpace, setSelectedSpace] = useState(null); 
+  
+  const [spacePrompts, setSpacePrompts] = useState([]); 
+  const [searchQuery, setSearchQuery] = useState(''); 
+  
+>>>>>>> Stashed changes
   const [savedItems, setSavedItems] = useState([]);
   const [notification, setNotification] = useState(null);
   const [user, setUser] = useState(null);
@@ -1012,8 +1067,12 @@ export default function App() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [isAddPromptModalOpen, setIsAddPromptModalOpen] = useState(false);
+<<<<<<< Updated upstream
 
   // Edit State
+=======
+  
+>>>>>>> Stashed changes
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [promptToEdit, setPromptToEdit] = useState(null);
 
@@ -1106,7 +1165,12 @@ export default function App() {
       await signInWithPopup(auth, new GoogleAuthProvider());
       setNotification({ message: "Successfully logged in!", type: "success" });
     } catch (error) {
+<<<<<<< Updated upstream
       setNotification({ message: "Login failed", type: "error" });
+=======
+      console.error(error);
+      setNotification({ message: 'Login failed', type: 'error' });
+>>>>>>> Stashed changes
     }
   };
 
@@ -1136,6 +1200,7 @@ export default function App() {
       createdAt: new Date().toISOString(),
     };
     try {
+<<<<<<< Updated upstream
       await addDoc(collection(db, "public_spaces"), newSpace);
       setNotification({
         message: "Space created successfully!",
@@ -1145,6 +1210,12 @@ export default function App() {
     } catch (error) {
       setNotification({ message: "Error creating space", type: "info" });
     }
+=======
+       await addDoc(collection(db, "public_spaces"), newSpace);
+       setNotification({ message: 'Space created successfully!', type: 'success' });
+       setIsModalOpen(false);
+    } catch (error) { console.error(error); setNotification({ message: 'Error creating space', type: 'error' }); }
+>>>>>>> Stashed changes
   };
 
   const handleCreateCategory = async (e) => {
@@ -1210,7 +1281,6 @@ export default function App() {
     }
   };
 
-  // NEW: Update Prompt Logic
   const handleEditClick = (prompt) => {
     setPromptToEdit(prompt);
     setIsEditModalOpen(true);
@@ -1219,6 +1289,7 @@ export default function App() {
   const handleUpdatePrompt = async (e) => {
     e.preventDefault();
     if (!user || !promptToEdit) return;
+<<<<<<< Updated upstream
 
     const newContent = new FormData(e.target).get("content");
 
@@ -1244,6 +1315,18 @@ export default function App() {
     } catch (error) {
       console.error("Error updating prompt:", error);
       setNotification({ message: "Error updating prompt", type: "error" });
+=======
+    const newContent = new FormData(e.target).get('content');
+    try {
+      const promptRef = doc(db, "public_spaces", selectedSpace.id, "prompts", promptToEdit.id);
+      await updateDoc(promptRef, { content: newContent, updatedAt: new Date().toISOString() });
+      setNotification({ message: 'Prompt updated successfully', type: 'success' });
+      setIsEditModalOpen(false);
+      setPromptToEdit(null);
+    } catch (error) {
+      console.error(error);
+      setNotification({ message: 'Error updating prompt', type: 'error' });
+>>>>>>> Stashed changes
     }
   };
 
@@ -1330,9 +1413,13 @@ export default function App() {
           setSelectedSpace(null);
         }
       }
+<<<<<<< Updated upstream
     } catch (e) {
       setNotification({ message: "Error deleting", type: "info" });
     }
+=======
+    } catch (error) { setNotification({ message: 'Error deleting', type: 'info' }); console.error('Delete error', error); }
+>>>>>>> Stashed changes
     setIsDeleteModalOpen(false);
     setItemToDelete(null);
   };
@@ -1361,7 +1448,10 @@ export default function App() {
     (c) => !hiddenCategoryNames.has(c.name),
   );
 
+  const isDashboardView = currentView === 'table';
+
   return (
+<<<<<<< Updated upstream
     <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
       <NewSpaceModal
         isOpen={isModalOpen}
@@ -1726,10 +1816,104 @@ export default function App() {
               </div>
             )}
           </div>
+=======
+    <div className={`font-sans text-gray-900 flex ${isDashboardView ? 'h-screen overflow-hidden bg-[#F5F5F7]' : 'min-h-screen bg-white flex-col'}`}>
+      <NewSpaceModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleCreateSpace} availableCategories={categories} />
+      <NewCategoryModal isOpen={isCategoryModalOpen} onClose={() => setIsCategoryModalOpen(false)} onSubmit={handleCreateCategory} />
+      <ManageCategoriesModal isOpen={isManageCategoryModalOpen} onClose={() => setIsManageCategoryModalOpen(false)} categories={categories} onUpdate={handleUpdateCategory} onDelete={handleDeleteCategory} user={user} hiddenCategoryNames={hiddenCategoryNames} onToggleVisibility={toggleCategoryVisibility} />
+      <DeleteModal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} onConfirm={confirmDelete} title={itemToDelete?.type === 'prompt' ? "Delete Prompt?" : "Delete Space?"} />
+      <AddPromptModal isOpen={isAddPromptModalOpen} onClose={() => setIsAddPromptModalOpen(false)} onSubmit={handleAddPrompt} />
+      <EditPromptModal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} onSubmit={handleUpdatePrompt} initialContent={promptToEdit?.content || ''} />
+
+      {isDashboardView && (
+        <Sidebar 
+          user={user} 
+          currentView={currentView} 
+          setCurrentView={setCurrentView} 
+          categories={categories} 
+          selectedCategory={selectedCategory} 
+          setSelectedCategory={setSelectedCategory}
+          setIsCategoryModalOpen={setIsCategoryModalOpen}
+        />
+      )}
+
+      <div className={`flex-1 flex flex-col ${isDashboardView ? 'overflow-hidden' : ''}`}>
+        {!isDashboardView && (
+          <Header user={user} searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentView={currentView} setCurrentView={setCurrentView} setSelectedSpace={setSelectedSpace} handleLogin={handleLogin} handleLogout={handleLogout} />
+        )}
+
+        <main className={`flex-1 ${isDashboardView ? 'overflow-y-auto' : ''}`}>
+        {!selectedSpace && currentView === 'home' && <HomePage onNavigate={setCurrentView} onLogin={handleLogin} />}
+        {!selectedSpace && currentView === 'privacy' && <PrivacyPolicyPage />}
+        
+        {selectedSpace && (
+          <SpaceDetailPage 
+             selectedSpace={selectedSpace} 
+             setSelectedSpace={setSelectedSpace} 
+             setCurrentView={setCurrentView} 
+             toggleSave={toggleSave} 
+             savedItems={savedItems} 
+             handleLike={handleLike} 
+             user={user} 
+             setIsAddPromptModalOpen={setIsAddPromptModalOpen} 
+             setNotification={setNotification} 
+             spacePrompts={spacePrompts} 
+             handleEditClick={handleEditClick} 
+             handleDeleteClick={handleDeleteClick} 
+          />
+        )}
+
+        {!selectedSpace && currentView === 'spaces' && (
+          <SpacesPage 
+             setIsModalOpen={setIsModalOpen} 
+             setIsCategoryModalOpen={setIsCategoryModalOpen} 
+             setIsManageCategoryModalOpen={setIsManageCategoryModalOpen} 
+             visibleCategories={visibleCategories} 
+             selectedCategory={selectedCategory} 
+             setSelectedCategory={setSelectedCategory} 
+             filteredCards={filteredCards} 
+             user={user} 
+             savedItems={savedItems} 
+             toggleSave={toggleSave} 
+             handleDeleteClick={handleDeleteClick} 
+             setSelectedSpace={setSelectedSpace} 
+          />
+        )}
+
+        {!selectedSpace && currentView === 'table' && (
+          <TablePage 
+             filteredCards={filteredCards} 
+             setSelectedSpace={setSelectedSpace}
+             savedItems={savedItems}
+             toggleSave={toggleSave}
+             handleDeleteClick={handleDeleteClick}
+             setIsModalOpen={setIsModalOpen}
+          />
+        )}
+
+        {!selectedSpace && currentView === 'library' && (
+           <LibraryPage 
+              savedItems={savedItems} 
+              setSelectedSpace={setSelectedSpace} 
+              setCurrentView={setCurrentView} 
+              toggleSave={toggleSave} 
+           />
+        )}
+        
+        {!selectedSpace && currentView === 'archive' && (
+           <div className="flex flex-col items-center justify-center p-20 text-gray-400 mt-20">
+              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><line x1="21" x2="3" y1="8" y2="8"/><line x1="10" x2="14" y1="12" y2="12"/><path d="M21 8v11c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V8"/><path d="M4 4h16c1.1 0 2 .9 2 2v2H2V6c0-1.1.9-2 2-2z"/></svg>
+              </div>
+              <h2 className="text-xl font-bold text-gray-700 mb-2">Archive is Empty</h2>
+              <p className="text-sm">You haven't archived any spaces or prompts yet.</p>
+           </div>
+>>>>>>> Stashed changes
         )}
       </main>
 
-      <Footer onNavigate={setCurrentView} />
+      {!isDashboardView && <Footer onNavigate={setCurrentView} />}
+      </div>
 
       {notification && (
         <Notification
