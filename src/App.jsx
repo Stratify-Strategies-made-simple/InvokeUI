@@ -20,11 +20,11 @@ import {
   limit,
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import Avatar from "./components/Avatar";
 import {
   LayoutGrid,
   FileText,
   Image as ImageIcon,
-  Music,
   Tag,
   ChevronRight,
   Bookmark,
@@ -213,23 +213,401 @@ const PrivacyPolicy = () => {
 
       <div className="prose prose-indigo max-w-none text-gray-600">
         <p className="lead text-xl text-gray-700 mb-8">
-          At Invoke, we take your privacy seriously. This policy describes how
-          we collect, use, and handle your data.
+          Invoke values your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.
         </p>
+
         <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
           1. Information We Collect
         </h3>
         <p className="mb-4">
-          We collect account info, content you create (prompts, spaces), and
-          usage data.
+          We may collect the following types of information:
         </p>
+        <ul className="list-disc pl-6 mb-6 space-y-2">
+          <li><strong>Account Information:</strong> Your name, email address, and login credentials.</li>
+          <li><strong>User Content:</strong> Any content you create, upload, or share within the app, including prompts, spaces, and other inputs.</li>
+          <li><strong>Usage Data:</strong> Information about how you interact with the app, such as features used, activity logs, and device information.</li>
+        </ul>
+
         <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-          2. Contact Us
+          2. How We Use Your Information
+        </h3>
+        <p className="mb-4">
+          We use collected data to:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-2">
+          <li>Provide, operate, and improve our services</li>
+          <li>Personalize your experience</li>
+          <li>Ensure security and prevent misuse</li>
+          <li>Communicate important updates or support responses</li>
+        </ul>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          3. Data Sharing and Security
+        </h3>
+        <p className="mb-4">
+          We do not sell your personal data. We may share information only when necessary to provide our services or comply with legal obligations. We implement appropriate security measures to protect your data.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          4. Your Rights
+        </h3>
+        <p className="mb-4">
+          You have the right to access, update, or delete your personal information. You may also request that we limit or stop processing your data, subject to applicable laws.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          5. Contact Us
         </h3>
         <p className="mb-8">
-          If you have any questions, contact us at privacy@invoke-app.com.
+          If you have any questions or concerns about this Privacy Policy, please contact us at: zoya.lpf20@gmail.com
         </p>
       </div>
+    </div>
+  );
+};
+
+const TermsOfService = () => {
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-16 animate-fade-in">
+      <div className="text-center mb-12">
+        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-600">
+          <FileText className="w-8 h-8" />
+        </div>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Terms of Service
+        </h1>
+        <p className="text-gray-500">Last updated: February 2026</p>
+      </div>
+
+      <div className="prose prose-indigo max-w-none text-gray-600">
+        <p className="lead text-xl text-gray-700 mb-8">
+          By using Invoke, you agree to these Terms of Service. Please read them carefully.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          1. Acceptance of Terms
+        </h3>
+        <p className="mb-4">
+          By accessing and using Invoke, you accept and agree to be bound by the terms and provision of this agreement.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          2. Use License
+        </h3>
+        <p className="mb-4">
+          Permission is granted to temporarily download one copy of the materials on Invoke for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          3. User Content
+        </h3>
+        <p className="mb-4">
+          You retain ownership of any content you create, upload, or share on Invoke. By using our service, you grant us a license to use, modify, and distribute your content as necessary to provide our services.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          4. Prohibited Activities
+        </h3>
+        <p className="mb-4">
+          You may not use our service to:
+        </p>
+        <ul className="list-disc pl-6 mb-6 space-y-2">
+          <li>Violate any applicable laws or regulations</li>
+          <li>Infringe on intellectual property rights</li>
+          <li>Upload harmful, offensive, or inappropriate content</li>
+          <li>Attempt to gain unauthorized access to our systems</li>
+          <li>Interfere with or disrupt the service</li>
+        </ul>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          5. Privacy
+        </h3>
+        <p className="mb-4">
+          Your privacy is important to us. Please review our Privacy Policy, which also governs your use of the service, to understand our practices.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          6. Termination
+        </h3>
+        <p className="mb-4">
+          We may terminate or suspend your account and bar access to the service immediately, without prior notice or liability, under our sole discretion.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          7. Limitation of Liability
+        </h3>
+        <p className="mb-4">
+          In no event shall Invoke, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages.
+        </p>
+
+        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          8. Contact Us
+        </h3>
+        <p className="mb-8">
+          If you have any questions about these Terms of Service, please contact us at: zoya.lpf20@gmail.com
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const PromptsCollection = () => {
+  const [prompts, setPrompts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingPrompt, setEditingPrompt] = useState(null);
+
+  // Load prompts from localStorage
+  useEffect(() => {
+    const savedPrompts = localStorage.getItem("invoke_prompts_collection");
+    if (savedPrompts) {
+      setPrompts(JSON.parse(savedPrompts));
+    }
+  }, []);
+
+  // Save prompts to localStorage
+  const savePrompts = (updatedPrompts) => {
+    setPrompts(updatedPrompts);
+    localStorage.setItem("invoke_prompts_collection", JSON.stringify(updatedPrompts));
+  };
+
+  const filteredPrompts = prompts.filter(prompt => {
+    const matchesSearch = prompt.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      prompt.content.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || prompt.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const handleAddPrompt = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newPrompt = {
+      id: Date.now().toString(),
+      title: formData.get("title"),
+      content: formData.get("content"),
+      category: formData.get("category"),
+      tags: formData.get("tags")?.split(",").map(tag => tag.trim()).filter(tag => tag),
+      createdAt: new Date().toISOString()
+    };
+
+    if (editingPrompt) {
+      savePrompts(prompts.map(p => p.id === editingPrompt.id ? { ...newPrompt, id: editingPrompt.id } : p));
+      setEditingPrompt(null);
+    } else {
+      savePrompts([...prompts, newPrompt]);
+    }
+
+    setIsAddModalOpen(false);
+    e.target.reset();
+  };
+
+  const handleDeletePrompt = (promptId) => {
+    if (confirm("Are you sure you want to delete this prompt?")) {
+      savePrompts(prompts.filter(p => p.id !== promptId));
+    }
+  };
+
+  const handleEditPrompt = (prompt) => {
+    setEditingPrompt(prompt);
+    setIsAddModalOpen(true);
+  };
+
+  const categories = ["All", ...new Set(prompts.map(p => p.category).filter(Boolean))];
+
+  return (
+    <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">My Prompts Collection</h1>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium text-sm"
+          >
+            <Plus className="w-4 h-4" /> Add Prompt
+          </button>
+          <button
+            onClick={() => {
+              // Create CSV content
+              const csvContent = [
+                ['Title', 'Content', 'Category', 'Tags', 'Created At'],
+                ...prompts.map(prompt => [
+                  prompt.title || '',
+                  `"${prompt.content?.replace(/"/g, '""')}"`, // Escape quotes in content
+                  prompt.category || '',
+                  `"${prompt.tags?.join('; ')}"`, // Join tags with semicolon
+                  prompt.createdAt || ''
+                ])
+              ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+              // Create and download CSV file
+              const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+              const link = document.createElement('a');
+              const url = URL.createObjectURL(blob);
+              link.setAttribute('href', url);
+              link.setAttribute('download', 'prompts-collection.csv');
+              link.style.visibility = 'hidden';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+            className="px-4 py-2.5 border border-gray-200 text-gray-700 rounded-lg text-sm font-bold hover:bg-gray-50 flex items-center gap-2"
+          >
+            <FileSpreadsheet className="w-4 h-4" /> Export CSV
+          </button>
+        </div>
+      </div>
+
+      {/* Search and Filter */}
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex-1">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search prompts..."
+              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+            />
+          </div>
+        </div>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+        >
+          {categories.map(cat => (
+            <option key={cat} value={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Prompts Grid */}
+      {filteredPrompts.length === 0 ? (
+        <div className="text-center py-24 bg-white rounded-3xl border border-gray-200">
+          <FileText className="w-16 h-16 text-indigo-300 mx-auto mb-6" />
+          <h3 className="text-xl font-bold text-gray-900 mb-2">No Prompts Found</h3>
+          <p className="text-gray-500">Start building your personal prompts collection</p>
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPrompts.map((prompt) => (
+            <div key={prompt.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 mb-2">{prompt.title}</h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge className="bg-blue-100 text-blue-700">{prompt.category}</Badge>
+                    {prompt.tags?.map(tag => (
+                      <Badge key={tag} className="bg-gray-100 text-gray-700 text-xs">{tag}</Badge>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEditPrompt(prompt)}
+                    className="p-2 text-gray-400 hover:text-indigo-600 rounded-lg"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDeletePrompt(prompt.id)}
+                    className="p-2 text-gray-400 hover:text-red-600 rounded-lg"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm line-clamp-3">{prompt.content}</p>
+              <div className="text-xs text-gray-400 mt-4">
+                Created: {new Date(prompt.createdAt).toLocaleDateString()}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Add/Edit Modal */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
+            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+              <h3 className="font-bold text-gray-900">
+                {editingPrompt ? "Edit Prompt" : "Add New Prompt"}
+              </h3>
+              <button
+                onClick={() => {
+                  setIsAddModalOpen(false);
+                  setEditingPrompt(null);
+                }}
+                className="text-gray-400 hover:text-gray-900"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <form onSubmit={handleAddPrompt} className="p-6 space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                  Title
+                </label>
+                <input
+                  name="title"
+                  required
+                  defaultValue={editingPrompt?.title}
+                  placeholder="Enter prompt title..."
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                  Content
+                </label>
+                <textarea
+                  name="content"
+                  required
+                  rows="4"
+                  defaultValue={editingPrompt?.content}
+                  placeholder="Enter your prompt content..."
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                    Category
+                  </label>
+                  <input
+                    name="category"
+                    required
+                    defaultValue={editingPrompt?.category}
+                    placeholder="e.g. Marketing, Planning"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                    Tags (comma separated)
+                  </label>
+                  <input
+                    name="tags"
+                    defaultValue={editingPrompt?.tags?.join(", ")}
+                    placeholder="e.g. AI, Writing, Productivity"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                {editingPrompt ? "Update Prompt" : "Add Prompt"}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -284,7 +662,10 @@ const Footer = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
-                <button className="hover:text-indigo-600 text-left">
+                <button
+                  onClick={() => onNavigate("terms")}
+                  className="hover:text-indigo-600 text-left"
+                >
                   Terms of Service
                 </button>
               </li>
@@ -843,13 +1224,15 @@ const SpaceCard = ({
 
         <div className="flex items-center justify-between pt-3 border-t border-white/20">
           <div className="flex items-center gap-2">
-            <img
+            <Avatar
               src={
                 card.authorImage ||
-                `https://api.dicebear.com/7.x/avataaars/svg?seed=${card.author}`
+                `https://api.dicebear.com/9.x/avataaars/svg?seed=${card.author}`
               }
-              className="w-5 h-5 rounded-full border border-white/30"
               alt="avatar"
+              className="w-5 h-5 rounded-full border border-white/30"
+              fallbackName={card.author}
+              size={20}
             />
             <span className="text-xs font-bold text-white/90 truncate max-w-[100px]">
               {card.author}
@@ -945,13 +1328,12 @@ const Header = ({
                   {user.displayName}
                 </div>
               </div>
-              <img
-                src={
-                  user.photoURL ||
-                  `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`
-                }
+              <Avatar
+                src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.uid}`}
                 alt="User"
                 className="w-8 h-8 rounded-full border border-gray-200"
+                fallbackName={user.displayName}
+                size={32}
               />
               <button
                 onClick={handleLogout}
@@ -976,9 +1358,9 @@ const Header = ({
 
 const MAIN_CATEGORIES = [
   { name: "All", icon: LayoutGrid, isMain: true, id: "main-all" },
-  { name: "Image Gen", icon: ImageIcon, isMain: true, id: "main-img" },
-  { name: "Text Gen", icon: FileText, isMain: true, id: "main-text" },
-  { name: "Audio", icon: Music, isMain: true, id: "main-audio" },
+  { name: "Planning", icon: FileSpreadsheet, isMain: true, id: "main-plan" },
+  { name: "Finance", icon: Database, isMain: true, id: "main-finance" },
+  { name: "Business", icon: Box, isMain: true, id: "main-business" },
 ];
 
 // ------------------------------------------------------------------
@@ -1103,9 +1485,13 @@ export default function App() {
 
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, new GoogleAuthProvider());
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      console.log("Login successful, user:", result.user);
+      console.log("User photoURL:", result.user.photoURL);
+      console.log("User UID:", result.user.uid);
       setNotification({ message: "Successfully logged in!", type: "success" });
     } catch (error) {
+      console.error("Login error:", error);
       setNotification({ message: "Login failed", type: "error" });
     }
   };
@@ -1424,6 +1810,12 @@ export default function App() {
         {/* VIEW: PRIVACY POLICY */}
         {!selectedSpace && currentView === "privacy" && <PrivacyPolicy />}
 
+        {/* VIEW: TERMS OF SERVICE */}
+        {!selectedSpace && currentView === "terms" && <TermsOfService />}
+
+        {/* VIEW: PROMPTS COLLECTION */}
+        {!selectedSpace && currentView === "prompts" && <PromptsCollection />}
+
         {/* VIEW: SPACE DETAIL */}
         {selectedSpace && (
           <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in max-w-5xl mx-auto">
@@ -1452,7 +1844,7 @@ export default function App() {
                     </Badge>
                   </div>
                   <div className="flex gap-4 items-center">
-                    <div className="flex items-center gap-2 bg-black/20 px-2 py-1.5 rounded-full backdrop-blur-sm">
+                    {/* <div className="flex items-center gap-2 bg-black/20 px-2 py-1.5 rounded-full backdrop-blur-sm">
                       <button
                         onClick={() => setAutoCorrect(!autoCorrect)}
                         className={`w-10 h-5 rounded-full p-1 transition-colors duration-300 ${autoCorrect ? "bg-green-400" : "bg-white/20"}`}
@@ -1461,7 +1853,18 @@ export default function App() {
                           className={`w-3 h-3 rounded-full bg-white shadow-sm transition-transform duration-300 ${autoCorrect ? "translate-x-5" : "translate-x-0"}`}
                         />
                       </button>
-                    </div>
+                    </div> */}
+                    <button
+                      onClick={() => handleLike(selectedSpace)}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/10"
+                    >
+                      <Heart
+                        className={`w-4 h-4 ${selectedSpace.likedBy?.includes(user?.uid) ? "fill-red-500 text-red-500" : "text-white"}`}
+                      />
+                      <span className="font-bold">
+                        {selectedSpace.likes || 0}
+                      </span>
+                    </button>
                     <button
                       onClick={() => toggleSave(selectedSpace)}
                       className="p-2.5 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-colors border border-white/10"
@@ -1482,13 +1885,15 @@ export default function App() {
 
                 <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/10">
                   <div className="flex items-center gap-3">
-                    <img
+                    <Avatar
                       src={
                         selectedSpace.authorImage ||
-                        `https://api.dicebear.com/7.x/avataaars/svg?seed=${selectedSpace.author}`
+                        `https://api.dicebear.com/9.x/avataaars/svg?seed=${selectedSpace.author}`
                       }
-                      className="w-10 h-10 rounded-full border-2 border-white/20 bg-white/10"
                       alt="author"
+                      className="w-10 h-10 rounded-full border-2 border-white/20 bg-white/10"
+                      fallbackName={selectedSpace.author}
+                      size={40}
                     />
                     <div>
                       <div className="text-xs text-white/60 uppercase font-bold tracking-wider">
@@ -1497,17 +1902,6 @@ export default function App() {
                       <div className="font-medium">{selectedSpace.author}</div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => handleLike(selectedSpace)}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/10"
-                  >
-                    <Heart
-                      className={`w-4 h-4 ${selectedSpace.likedBy?.includes(user?.uid) ? "fill-red-500 text-red-500" : "text-white"}`}
-                    />
-                    <span className="font-bold">
-                      {selectedSpace.likes || 0}
-                    </span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -1516,16 +1910,43 @@ export default function App() {
               <h2 className="text-2xl font-bold text-gray-900">
                 Prompts Collection
               </h2>
-              <button
-                onClick={() =>
-                  user
-                    ? setIsAddPromptModalOpen(true)
-                    : setNotification({ message: "Login needed", type: "info" })
-                }
-                className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 flex items-center gap-2 shadow-sm"
-              >
-                <Plus className="w-4 h-4" /> Add Prompt
-              </button>
+              <div className="flex gap-4">
+                <button onClick={() => {
+                  // Create CSV content
+                  const csvContent = [
+                    ['Author', 'Content', 'Created At'],
+                    ...spacePrompts.map(prompt => [
+                      prompt.author || '',
+                      `"${prompt.content?.replace(/"/g, '""')}"`, // Escape quotes in content
+                      new Date(prompt.createdAt).toLocaleDateString() || ''
+                    ])
+                  ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+                  // Create and download CSV file
+                  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                  const link = document.createElement('a');
+                  const url = URL.createObjectURL(blob);
+                  link.setAttribute('href', url);
+                  link.setAttribute('download', 'space-prompts.csv');
+                  link.style.visibility = 'hidden';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }} className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-xl text-sm">
+                  <FileSpreadsheet className="w-4 h-4" /> Export CSV
+                </button>
+
+                <button
+                  onClick={() =>
+                    user
+                      ? setIsAddPromptModalOpen(true)
+                      : setNotification({ message: "Login needed", type: "info" })
+                  }
+                  className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 flex items-center gap-2 shadow-sm"
+                >
+                  <Plus className="w-4 h-4" /> Add Prompt
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
@@ -1671,9 +2092,6 @@ export default function App() {
           <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-3xl font-bold text-gray-900">My Library</h1>
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-xl text-sm">
-                <FileSpreadsheet className="w-4 h-4" /> Export CSV
-              </button>
             </div>
             {savedItems.length === 0 ? (
               <div className="py-24 text-center bg-white rounded-3xl border border-gray-200">

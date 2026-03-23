@@ -1,5 +1,5 @@
-import React from 'react';
 import { Lock, Bookmark, Trash2, Heart } from 'lucide-react';
+import Avatar from './Avatar';
 
 // Defined locally to ensure self-contained rendering
 const Badge = ({ children, className = "" }) => (
@@ -47,7 +47,7 @@ export const SpaceCard = ({ card, user, savedItems, toggleSave, handleDeleteClic
          
          <div className="flex items-center justify-between pt-3 border-t border-white/20">
             <div className="flex items-center gap-2">
-               <img src={card.authorImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${card.author}`} className="w-5 h-5 rounded-full border border-white/30" alt="avatar"/>
+               <Avatar src={card.authorImage || `https://api.dicebear.com/9.x/avataaars/svg?seed=${card.author}`} className="w-5 h-5 rounded-full border border-white/30" alt="avatar" fallbackName={card.author} size={20}/>
                <span className="text-xs font-bold text-white/90 truncate max-w-[100px]">{card.author}</span>
             </div>
             <div className="flex items-center gap-3 text-xs font-bold">

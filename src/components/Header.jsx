@@ -1,5 +1,7 @@
 import React from 'react';
-import { Zap, Search, Box, Database, LogOut } from 'lucide-react';
+import { Search, Database, LogOut } from 'lucide-react';
+import Avatar from './Avatar';
+import { Zap, Box } from 'lucide-react';
 
 export const Header = ({ 
   user, 
@@ -59,10 +61,12 @@ export const Header = ({
                   <div className="text-right hidden sm:block">
                      <div className="text-sm font-bold text-gray-900 leading-none">{user.displayName}</div>
                   </div>
-                  <img 
-                    src={user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`} 
+                  <Avatar 
+                    src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.uid}`} 
                     alt="User" 
-                    className="w-8 h-8 rounded-full border border-gray-200" 
+                    className="w-8 h-8 rounded-full border border-gray-200"
+                    fallbackName={user.displayName}
+                    size={32}
                   />
                   <button onClick={handleLogout} className="p-1.5 text-gray-400 hover:text-red-600 transition-colors">
                     <LogOut className="w-4 h-4" />
