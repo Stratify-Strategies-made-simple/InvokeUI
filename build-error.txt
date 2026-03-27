@@ -1,0 +1,81 @@
+﻿[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 4 modules transformed.
+node.exe : [31mΓ£ù[39m 
+Build failed in 447ms
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (  
+  [31mΓ£ù[39m Build fa   
+ iled in 447ms:String)    
+ [], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+[31merror during build:
+[31m[vite:esbuild] 
+Transform failed with 1 
+error:
+C:/Users/jamad/Desktop/Inv
+okeUI-main/src/App.jsx:200
+2:9: ERROR: Expected ":" 
+but found "}"[31m
+file: [36mC:/Users/jamad/
+Desktop/InvokeUI-main/src/
+App.jsx:2002:9[31m
+[33m
+[33mExpected ":" but 
+found "}"[33m
+2000 |              </div>
+2001 |            </div>
+2002 |          )}
+     |           ^
+2003 |  
+2004 |              ) : (
+[31m
+    at 
+failureErrorWithLog (C:\Us
+ers\jamad\Desktop\InvokeUI
+-main\node_modules\esbuild
+\lib\main.js:1467:15)
+    at C:\Users\jamad\Desk
+top\InvokeUI-main\node_mod
+ules\esbuild\lib\main.js:7
+36:50
+    at responseCallbacks.<
+computed> (C:\Users\jamad\
+Desktop\InvokeUI-main\node
+_modules\esbuild\lib\main.
+js:603:9)
+    at 
+handleIncomingPacket (C:\U
+sers\jamad\Desktop\InvokeU
+I-main\node_modules\esbuil
+d\lib\main.js:658:12)
+    at 
+Socket.readFromStdout (C:\
+Users\jamad\Desktop\Invoke
+UI-main\node_modules\esbui
+ld\lib\main.js:581:7)
+    at Socket.emit 
+(node:events:508:28)
+    at addChunk (node:inte
+rnal/streams/readable:563:
+12)
+    at readableAddChunkPus
+hByteMode (node:internal/s
+treams/readable:514:3)
+    at Readable.push (node
+:internal/streams/readable
+:394:5)
+    at Pipe.onStreamRead (
+node:internal/stream_base_
+commons:189:23)[39m
