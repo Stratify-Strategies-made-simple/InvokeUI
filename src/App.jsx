@@ -1815,33 +1815,33 @@ export default function App() {
 
           <Route path="/spaces" element={
             selectedSpace ? (
-          <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in max-w-5xl mx-auto">
-            <div className="flex items-center gap-2 mb-6 text-sm text-gray-500">
-              <button
-                onClick={() => {
-                  setSelectedSpace(null);
-                  navigate("/spaces");
-                }}
-                className="hover:text-indigo-600 font-medium"
-              >
-                Spaces
-              </button>
-              <ChevronRight className="w-4 h-4" />
-              <span>{selectedSpace.category}</span>
-            </div>
+              <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in max-w-5xl mx-auto">
+                <div className="flex items-center gap-2 mb-6 text-sm text-gray-500">
+                  <button
+                    onClick={() => {
+                      setSelectedSpace(null);
+                      navigate("/spaces");
+                    }}
+                    className="hover:text-indigo-600 font-medium"
+                  >
+                    Spaces
+                  </button>
+                  <ChevronRight className="w-4 h-4" />
+                  <span>{selectedSpace.category}</span>
+                </div>
 
-            <div
-              className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${selectedSpace.gradient} text-white shadow-xl mb-8`}
-            >
-              <div className="relative p-8 md:p-12">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge className="bg-white/20 backdrop-blur-sm border border-white/10">
-                      {selectedSpace.category}
-                    </Badge>
-                  </div>
-                  <div className="flex gap-4 items-center">
-                    {/* <div className="flex items-center gap-2 bg-black/20 px-2 py-1.5 rounded-full backdrop-blur-sm">
+                <div
+                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${selectedSpace.gradient} text-white shadow-xl mb-8`}
+                >
+                  <div className="relative p-8 md:p-12">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="flex flex-wrap gap-2">
+                        <Badge className="bg-white/20 backdrop-blur-sm border border-white/10">
+                          {selectedSpace.category}
+                        </Badge>
+                      </div>
+                      <div className="flex gap-4 items-center">
+                        {/* <div className="flex items-center gap-2 bg-black/20 px-2 py-1.5 rounded-full backdrop-blur-sm">
                       <button
                         onClick={() => setAutoCorrect(!autoCorrect)}
                         className={`w-10 h-5 rounded-full p-1 transition-colors duration-300 ${autoCorrect ? "bg-green-400" : "bg-white/20"}`}
@@ -1851,294 +1851,294 @@ export default function App() {
                         />
                       </button>
                     </div> */}
-                    <button
-                      onClick={() => handleLike(selectedSpace)}
-                      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/10"
-                    >
-                      <Heart
-                        className={`w-4 h-4 ${selectedSpace.likedBy?.includes(user?.uid) ? "fill-red-500 text-red-500" : "text-white"}`}
-                      />
-                      <span className="font-bold">
-                        {selectedSpace.likes || 0}
-                      </span>
-                    </button>
-                    <button
-                      onClick={() => toggleSave(selectedSpace)}
-                      className="p-2.5 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-colors border border-white/10"
-                    >
-                      <Bookmark
-                        className={`w-5 h-5 ${savedItems.some((i) => i.id === selectedSpace.id) ? "fill-white" : ""}`}
-                      />
-                    </button>
-                  </div>
-                </div>
-
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-                  {selectedSpace.title}
-                </h1>
-                <p className="text-lg text-white/90 max-w-2xl leading-relaxed">
-                  {selectedSpace.description}
-                </p>
-
-                <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/10">
-                  <div className="flex items-center gap-3">
-                    <Avatar
-                      src={
-                        selectedSpace.authorImage ||
-                        `https://api.dicebear.com/9.x/avataaars/svg?seed=${selectedSpace.author}`
-                      }
-                      alt="author"
-                      className="w-10 h-10 rounded-full border-2 border-white/20 bg-white/10"
-                      fallbackName={selectedSpace.author}
-                      size={40}
-                    />
-                    <div>
-                      <div className="text-xs text-white/60 uppercase font-bold tracking-wider">
-                        Created By
+                        <button
+                          onClick={() => handleLike(selectedSpace)}
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors border border-white/10"
+                        >
+                          <Heart
+                            className={`w-4 h-4 ${selectedSpace.likedBy?.includes(user?.uid) ? "fill-red-500 text-red-500" : "text-white"}`}
+                          />
+                          <span className="font-bold">
+                            {selectedSpace.likes || 0}
+                          </span>
+                        </button>
+                        <button
+                          onClick={() => toggleSave(selectedSpace)}
+                          className="p-2.5 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-colors border border-white/10"
+                        >
+                          <Bookmark
+                            className={`w-5 h-5 ${savedItems.some((i) => i.id === selectedSpace.id) ? "fill-white" : ""}`}
+                          />
+                        </button>
                       </div>
-                      <div className="font-medium">{selectedSpace.author}</div>
+                    </div>
+
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                      {selectedSpace.title}
+                    </h1>
+                    <p className="text-lg text-white/90 max-w-2xl leading-relaxed">
+                      {selectedSpace.description}
+                    </p>
+
+                    <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/10">
+                      <div className="flex items-center gap-3">
+                        <Avatar
+                          src={
+                            selectedSpace.authorImage ||
+                            `https://api.dicebear.com/9.x/avataaars/svg?seed=${selectedSpace.author}`
+                          }
+                          alt="author"
+                          className="w-10 h-10 rounded-full border-2 border-white/20 bg-white/10"
+                          fallbackName={selectedSpace.author}
+                          size={40}
+                        />
+                        <div>
+                          <div className="text-xs text-white/60 uppercase font-bold tracking-wider">
+                            Created By
+                          </div>
+                          <div className="font-medium">{selectedSpace.author}</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Prompts Collection
-              </h2>
-              <div className="flex gap-4">
-                <button onClick={() => {
-                  // Create CSV content
-                  const csvContent = [
-                    ['Author', 'Content', 'Created At'],
-                    ...spacePrompts.map(prompt => [
-                      prompt.author || '',
-                      `"${prompt.content?.replace(/"/g, '""')}"`, // Escape quotes in content
-                      new Date(prompt.createdAt).toLocaleDateString() || ''
-                    ])
-                  ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    Prompts Collection
+                  </h2>
+                  <div className="flex gap-4">
+                    <button onClick={() => {
+                      // Create CSV content
+                      const csvContent = [
+                        ['Author', 'Content', 'Created At'],
+                        ...spacePrompts.map(prompt => [
+                          prompt.author || '',
+                          `"${prompt.content?.replace(/"/g, '""')}"`, // Escape quotes in content
+                          new Date(prompt.createdAt).toLocaleDateString() || ''
+                        ])
+                      ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
 
-                  // Create and download CSV file
-                  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                  const link = document.createElement('a');
-                  const url = URL.createObjectURL(blob);
-                  link.setAttribute('href', url);
-                  link.setAttribute('download', 'space-prompts.csv');
-                  link.style.visibility = 'hidden';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }} className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-xl text-sm">
-                  <FileSpreadsheet className="w-4 h-4" /> Export CSV
-                </button>
+                      // Create and download CSV file
+                      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                      const link = document.createElement('a');
+                      const url = URL.createObjectURL(blob);
+                      link.setAttribute('href', url);
+                      link.setAttribute('download', 'space-prompts.csv');
+                      link.style.visibility = 'hidden';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }} className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-xl text-sm">
+                      <FileSpreadsheet className="w-4 h-4" /> Export CSV
+                    </button>
 
-                <button
-                  onClick={() =>
-                    user
-                      ? setIsAddPromptModalOpen(true)
-                      : setNotification({ message: "Login needed", type: "info" })
-                  }
-                  className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 flex items-center gap-2 shadow-sm"
-                >
-                  <Plus className="w-4 h-4" /> Add Prompt
-                </button>
-              </div>
-            </div>
+                    <button
+                      onClick={() =>
+                        user
+                          ? setIsAddPromptModalOpen(true)
+                          : setNotification({ message: "Login needed", type: "info" })
+                      }
+                      className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 flex items-center gap-2 shadow-sm"
+                    >
+                      <Plus className="w-4 h-4" /> Add Prompt
+                    </button>
+                  </div>
+                </div>
 
-            <div className="grid grid-cols-1 gap-4">
-              {spacePrompts.map((prompt) => (
-                <div
-                  key={prompt.id}
-                  className="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all"
-                >
-                  <div className="flex justify-between items-start gap-4">
-                    <p className="text-gray-700 leading-relaxed font-mono text-sm whitespace-pre-wrap flex-1">
-                      {prompt.content}
-                    </p>
-                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() => {
-                          navigator.clipboard.writeText(prompt.content);
-                          setNotification({
-                            message: "Copied!",
-                            type: "success",
-                          });
-                        }}
-                        className="p-2 text-gray-400 hover:text-indigo-600 bg-gray-50 rounded-lg"
-                      >
-                        <Copy className="w-4 h-4" />
-                      </button>
-
-                      {/* RE-ADDED EDIT & DELETE BUTTONS */}
-                      {user && prompt.userId === user.uid && (
-                        <>
+                <div className="grid grid-cols-1 gap-4">
+                  {spacePrompts.map((prompt) => (
+                    <div
+                      key={prompt.id}
+                      className="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all"
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <p className="text-gray-700 leading-relaxed font-mono text-sm whitespace-pre-wrap flex-1">
+                          {prompt.content}
+                        </p>
+                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
-                            onClick={() => handleEditClick(prompt)}
+                            onClick={() => {
+                              navigator.clipboard.writeText(prompt.content);
+                              setNotification({
+                                message: "Copied!",
+                                type: "success",
+                              });
+                            }}
                             className="p-2 text-gray-400 hover:text-indigo-600 bg-gray-50 rounded-lg"
                           >
-                            <Pencil className="w-4 h-4" />
+                            <Copy className="w-4 h-4" />
                           </button>
-                          <button
-                            onClick={() =>
-                              handleDeleteClick({
-                                type: "prompt",
-                                id: prompt.id,
-                              })
-                            }
-                            className="p-2 text-gray-400 hover:text-red-600 bg-gray-50 rounded-lg"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
-                    <span>Added by {prompt.author}</span>
-                    <div className="flex items-center gap-3">
-                      <button className="hover:text-indigo-600">
-                        <Sparkles className="w-4 h-4" />
-                      </button>
-                      <span>
-                        {new Date(prompt.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-            ) : (
-          <div className="max-w-[1400px] mx-auto px-4 py-8">
-            <div className="mb-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-indigo-600 rounded-lg text-white">
-                    <LayoutGrid className="w-6 h-6" />
-                  </div>
-                  <h1 className="text-2xl font-bold text-gray-900">Spaces</h1>
-                </div>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="px-4 py-2 bg-indigo-50 text-indigo-700 font-bold rounded-lg text-sm flex items-center gap-2"
-                  >
-                    <Plus className="w-4 h-4" /> New Space
-                  </button>
-                  <button
-                    onClick={() => setIsCategoryModalOpen(true)}
-                    className="px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-lg text-sm flex items-center gap-2"
-                  >
-                    <Plus className="w-4 h-4" /> Add Category
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar items-center">
-                <button
-                  onClick={() => setIsManageCategoryModalOpen(true)}
-                  className="p-2 bg-gray-100 border border-gray-200 text-gray-600 rounded-full"
-                >
-                  <Settings className="w-4 h-4" />
-                </button>
-                <div className="w-px h-6 bg-gray-200 mx-1 flex-shrink-0"></div>
-                {visibleCategories.map((cat) => (
-                  <button
-                    key={cat.id || cat.name}
-                    onClick={() => setSelectedCategory(cat.name)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border ${selectedCategory === cat.name ? "bg-black text-white border-black" : "bg-white text-gray-600 border-gray-200"}`}
-                  >
-                    {cat.icon && cat.isMain && <cat.icon className="w-4 h-4" />}
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredCards.length === 0 ? (
-                <div className="py-24 text-center col-span-full border-2 border-dashed border-gray-200 rounded-2xl">
-                  <Search className="w-8 h-8 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-gray-900">
-                    No spaces found
-                  </h3>
-                </div>
-              ) : (
-                filteredCards.map((card) => (
-                  <SpaceCard
-                    key={card.id}
-                    card={card}
-                    user={user}
-                    savedItems={savedItems}
-                    toggleSave={toggleSave}
-                    handleDeleteClick={handleDeleteClick}
-                    setSelectedSpace={setSelectedSpace}
-                  />
-                ))
-              )}
-            </div>
-          </div>
-            )
-          } />
-
-          <Route path="/library" element={(
-          <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-3xl font-bold text-gray-900">My Library</h1>
-            </div>
-            {savedItems.length === 0 ? (
-              <div className="py-24 text-center bg-white rounded-3xl border border-gray-200">
-                <Bookmark className="w-10 h-10 text-indigo-300 mx-auto mb-6" />
-                <h3 className="text-xl font-bold">Library Empty</h3>
-              </div>
-            ) : (
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-                {savedItems.map((item, idx) => (
-                  <div
-                    key={item.id}
-                    className={`p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-gray-50 ${idx !== savedItems.length - 1 ? "border-b border-gray-100" : ""}`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-bold`}
-                      >
-                        {item.title.charAt(0)}
+                          {/* RE-ADDED EDIT & DELETE BUTTONS */}
+                          {user && prompt.userId === user.uid && (
+                            <>
+                              <button
+                                onClick={() => handleEditClick(prompt)}
+                                className="p-2 text-gray-400 hover:text-indigo-600 bg-gray-50 rounded-lg"
+                              >
+                                <Pencil className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() =>
+                                  handleDeleteClick({
+                                    type: "prompt",
+                                    id: prompt.id,
+                                  })
+                                }
+                                className="p-2 text-gray-400 hover:text-red-600 bg-gray-50 rounded-lg"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 text-lg">
-                          {item.title}
-                        </h4>
-                        <div className="flex gap-2 text-xs text-gray-500 mt-1">
-                          <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-medium">
-                            {item.category}
+                      <div className="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+                        <span>Added by {prompt.author}</span>
+                        <div className="flex items-center gap-3">
+                          <button className="hover:text-indigo-600">
+                            <Sparkles className="w-4 h-4" />
+                          </button>
+                          <span>
+                            {new Date(prompt.createdAt).toLocaleDateString()}
                           </span>
                         </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+            ) : (
+              <div className="max-w-[1400px] mx-auto px-4 py-8">
+                <div className="mb-8">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                     <div className="flex items-center gap-3">
+                      <div className="p-2 bg-indigo-600 rounded-lg text-white">
+                        <LayoutGrid className="w-6 h-6" />
+                      </div>
+                      <h1 className="text-2xl font-bold text-gray-900">Spaces</h1>
+                    </div>
+                    <div className="flex gap-3">
                       <button
-                        onClick={() => {
-                          setSelectedSpace(item);
-                          navigate("/spaces");
-                        }}
-                        className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-100"
+                        onClick={() => setIsModalOpen(true)}
+                        className="px-4 py-2 bg-indigo-50 text-indigo-700 font-bold rounded-lg text-sm flex items-center gap-2"
                       >
-                        Open
+                        <Plus className="w-4 h-4" /> New Space
                       </button>
                       <button
-                        onClick={() => toggleSave(item)}
-                        className="p-2 text-gray-400 hover:text-red-600"
+                        onClick={() => setIsCategoryModalOpen(true)}
+                        className="px-4 py-2 border border-gray-200 text-gray-700 font-bold rounded-lg text-sm flex items-center gap-2"
                       >
-                        <Trash2 className="w-5 h-5" />
+                        <Plus className="w-4 h-4" /> Add Category
                       </button>
                     </div>
                   </div>
-                ))}
+
+                  <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar items-center">
+                    <button
+                      onClick={() => setIsManageCategoryModalOpen(true)}
+                      className="p-2 bg-gray-100 border border-gray-200 text-gray-600 rounded-full"
+                    >
+                      <Settings className="w-4 h-4" />
+                    </button>
+                    <div className="w-px h-6 bg-gray-200 mx-1 flex-shrink-0"></div>
+                    {visibleCategories.map((cat) => (
+                      <button
+                        key={cat.id || cat.name}
+                        onClick={() => setSelectedCategory(cat.name)}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border ${selectedCategory === cat.name ? "bg-black text-white border-black" : "bg-white text-gray-600 border-gray-200"}`}
+                      >
+                        {cat.icon && cat.isMain && <cat.icon className="w-4 h-4" />}
+                        {cat.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredCards.length === 0 ? (
+                    <div className="py-24 text-center col-span-full border-2 border-dashed border-gray-200 rounded-2xl">
+                      <Search className="w-8 h-8 text-gray-300 mx-auto mb-4" />
+                      <h3 className="text-xl font-bold text-gray-900">
+                        No spaces found
+                      </h3>
+                    </div>
+                  ) : (
+                    filteredCards.map((card) => (
+                      <SpaceCard
+                        key={card.id}
+                        card={card}
+                        user={user}
+                        savedItems={savedItems}
+                        toggleSave={toggleSave}
+                        handleDeleteClick={handleDeleteClick}
+                        setSelectedSpace={setSelectedSpace}
+                      />
+                    ))
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            )
+          } />
+
+          <Route path="/library" element={(
+            <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
+              <div className="flex items-center justify-between mb-8">
+                <h1 className="text-3xl font-bold text-gray-900">My Library</h1>
+              </div>
+              {savedItems.length === 0 ? (
+                <div className="py-24 text-center bg-white rounded-3xl border border-gray-200">
+                  <Bookmark className="w-10 h-10 text-indigo-300 mx-auto mb-6" />
+                  <h3 className="text-xl font-bold">Library Empty</h3>
+                </div>
+              ) : (
+                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                  {savedItems.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      className={`p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-gray-50 ${idx !== savedItems.length - 1 ? "border-b border-gray-100" : ""}`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-bold`}
+                        >
+                          {item.title.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-gray-900 text-lg">
+                            {item.title}
+                          </h4>
+                          <div className="flex gap-2 text-xs text-gray-500 mt-1">
+                            <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-medium">
+                              {item.category}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => {
+                            setSelectedSpace(item);
+                            navigate("/spaces");
+                          }}
+                          className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-100"
+                        >
+                          Open
+                        </button>
+                        <button
+                          onClick={() => toggleSave(item)}
+                          className="p-2 text-gray-400 hover:text-red-600"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           )} />
         </Routes>
       </main>
