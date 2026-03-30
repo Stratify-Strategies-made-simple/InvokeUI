@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
+import ToolsPage from "./pages/ToolsPage";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -612,7 +613,7 @@ const PromptsCollection = () => {
   );
 };
 
-const Footer = ({ onNavigate }) => {
+const Footer = ({ onNavigate, user, setNotification }) => {
   return (
     <footer className="bg-white border-t border-gray-200 mt-auto">
       <div className="max-w-[1400px] mx-auto px-4 py-12">
@@ -642,7 +643,10 @@ const Footer = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate("library")}
+                  onClick={() => {
+                    if (user) onNavigate("library");
+                    else setNotification({ message: "Please sign in to view your Library", type: "info" });
+                  }}
                   className="hover:text-indigo-600 text-left"
                 >
                   Library
@@ -1258,6 +1262,7 @@ const Header = ({
   setSelectedSpace,
   handleLogin,
   handleLogout,
+  setNotification,
 }) => {
   return (
     <header className="border-b border-gray-200 sticky top-0 bg-white z-40">
@@ -1313,11 +1318,22 @@ const Header = ({
                 if (user) {
                   setCurrentView("library");
                   setSelectedSpace(null);
-                } else alert("Please log in to view library");
+                } else {
+                  setNotification({ message: "Please sign in to view your Library", type: "info" });
+                }
               }}
               className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "library" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
             >
               Library
+            </button>
+            <button
+              onClick={() => {
+                setCurrentView("tools");
+                setSelectedSpace(null);
+              }}
+              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "tools" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
+            >
+              Tools
             </button>
           </div>
 
@@ -1799,6 +1815,7 @@ export default function App() {
         setSelectedSpace={setSelectedSpace}
         handleLogin={handleLogin}
         handleLogout={handleLogout}
+        setNotification={setNotification}
       />
 
       <main className="flex-1">
@@ -1815,6 +1832,9 @@ export default function App() {
 
         {/* VIEW: PROMPTS COLLECTION */}
         {!selectedSpace && currentView === "prompts" && <PromptsCollection />}
+
+        {/* VIEW: TOOLS / MCP INTEGRATIONS */}
+        {!selectedSpace && currentView === "tools" && <ToolsPage />}
 
         {/* VIEW: SPACE DETAIL */}
         {selectedSpace && (
@@ -2147,7 +2167,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer onNavigate={setCurrentView} />
+      <Footer onNavigate={setCurrentView} user={user} setNotification={setNotification} />
 
       {notification && (
         <Notification
