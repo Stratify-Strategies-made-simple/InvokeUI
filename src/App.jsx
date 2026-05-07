@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import ToolsPage from "./pages/ToolsPage";
+import AgentMarketplace from "./pages/AgentMarketplace";
+import AgentConfiguration from "./pages/AgentConfiguration";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -1328,6 +1330,15 @@ const Header = ({
             </button>
             <button
               onClick={() => {
+                setCurrentView("agents");
+                setSelectedSpace(null);
+              }}
+              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "agents" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
+            >
+              Agents
+            </button>
+            <button
+              onClick={() => {
                 setCurrentView("tools");
                 setSelectedSpace(null);
               }}
@@ -1386,6 +1397,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedSpace, setSelectedSpace] = useState(null);
+  const [agentPack, setAgentPack] = useState([]);
 
   const [spacePrompts, setSpacePrompts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -1835,6 +1847,28 @@ export default function App() {
 
         {/* VIEW: TOOLS / MCP INTEGRATIONS */}
         {!selectedSpace && currentView === "tools" && <ToolsPage />}
+
+        {/* VIEW: AGENT MARKETPLACE */}
+        {!selectedSpace && currentView === "agents" && (
+          <AgentMarketplace 
+            user={user} 
+            setNotification={setNotification} 
+            onNavigate={(view, pack) => {
+              if (pack) setAgentPack(pack);
+              setCurrentView(view);
+            }} 
+          />
+        )}
+
+        {/* VIEW: AGENT CONFIGURATION */}
+        {!selectedSpace && currentView === "configure_agent" && (
+          <AgentConfiguration 
+            pack={agentPack} 
+            user={user} 
+            setNotification={setNotification} 
+            onNavigate={(view) => setCurrentView(view)} 
+          />
+        )}
 
         {/* VIEW: SPACE DETAIL */}
         {selectedSpace && (
