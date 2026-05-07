@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import ToolsPage from "./pages/ToolsPage";
+import EndpointsPage from "./pages/EndpointsPage";
+import AgentMarketplace from "./pages/AgentMarketplace";
+import AgentConfiguration from "./pages/AgentConfiguration";
+import { HomePage } from "./pages/HomePage";
+import Header from "./components/layout/Header";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -21,7 +25,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
-import Avatar from "./components/Avatar";
+import Avatar from "./components/ui/Avatar";
 import {
   LayoutGrid,
   FileText,
@@ -88,128 +92,19 @@ const Notification = ({ message, type = "success", onClose }) => (
 // PAGE COMPONENTS (Home, Privacy, Footer)
 // ------------------------------------------------------------------
 
-const HomePage = ({ onNavigate, onLogin }) => {
-  return (
-    <div className="animate-fade-in">
-      <section className="relative overflow-hidden bg-white pt-16 pb-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative z-20">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm font-bold mb-6">
-                <Sparkles className="w-4 h-4" />
-                <span>The Knowledge Base for the AI Era</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
-                Organize your{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-                  AI Prompts
-                </span>{" "}
-                in one place.
-              </h1>
-              <p className="text-xl text-gray-500 mb-8 leading-relaxed max-w-lg">
-                Stop losing your best prompts. Invoke helps teams and creators
-                organize, discover, and share their AI workflows effectively.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => onNavigate("spaces")}
-                  className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-indigo-200 flex items-center gap-2"
-                >
-                  Explore Spaces <ArrowRight className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => {
-                    console.log("Sign In clicked");
-                    if (onLogin) onLogin();
-                    else alert("Login function not connected");
-                  }}
-                  className="px-8 py-4 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-full font-bold text-lg transition-all cursor-pointer relative z-30"
-                >
-                  Sign In
-                </button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full p-8 md:p-12 relative z-10">
-                <img
-                  src="https://api.dicebear.com/9.x/notionists/svg?seed=Work&backgroundColor=transparent"
-                  alt="Team collaborating"
-                  className="w-full h-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-              <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Everything you need to master AI
-            </h2>
-            <p className="text-lg text-gray-500">
-              Simplify your workflow with tools designed for the modern creator.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6">
-                <Database className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Centralized Library
-              </h3>
-              <p className="text-gray-500 leading-relaxed">
-                Save prompts from ChatGPT, Midjourney, and more into structured,
-                searchable Spaces.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-6">
-                <Users className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Community Driven
-              </h3>
-              <p className="text-gray-500 leading-relaxed">
-                Discover workflows from other experts. Fork, edit, and improve
-                prompts together.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-6">
-                <Lightbulb className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                AI Enhancement
-              </h3>
-              <p className="text-gray-500 leading-relaxed">
-                Use our integrated tools to automatically refine and improve
-                your prompt structure.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+// HomePage extracted to src/pages/HomePage.jsx
 
 const PrivacyPolicy = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 animate-fade-in">
       <div className="text-center mb-12">
-        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-600">
+        <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6 text-primary-600">
           <Shield className="w-8 h-8" />
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-text-main mb-4">
           Privacy Policy
         </h1>
-        <p className="text-gray-500">Last updated: February 2026</p>
+        <p className="text-text-muted">Last updated: February 2026</p>
       </div>
 
       <div className="prose prose-indigo max-w-none text-gray-600">
@@ -217,7 +112,7 @@ const PrivacyPolicy = () => {
           Invoke values your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           1. Information We Collect
         </h3>
         <p className="mb-4">
@@ -229,7 +124,7 @@ const PrivacyPolicy = () => {
           <li><strong>Usage Data:</strong> Information about how you interact with the app, such as features used, activity logs, and device information.</li>
         </ul>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           2. How We Use Your Information
         </h3>
         <p className="mb-4">
@@ -242,21 +137,21 @@ const PrivacyPolicy = () => {
           <li>Communicate important updates or support responses</li>
         </ul>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           3. Data Sharing and Security
         </h3>
         <p className="mb-4">
           We do not sell your personal data. We may share information only when necessary to provide our services or comply with legal obligations. We implement appropriate security measures to protect your data.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           4. Your Rights
         </h3>
         <p className="mb-4">
           You have the right to access, update, or delete your personal information. You may also request that we limit or stop processing your data, subject to applicable laws.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           5. Contact Us
         </h3>
         <p className="mb-8">
@@ -271,13 +166,13 @@ const TermsOfService = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 animate-fade-in">
       <div className="text-center mb-12">
-        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-600">
+        <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6 text-primary-600">
           <FileText className="w-8 h-8" />
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-text-main mb-4">
           Terms of Service
         </h1>
-        <p className="text-gray-500">Last updated: February 2026</p>
+        <p className="text-text-muted">Last updated: February 2026</p>
       </div>
 
       <div className="prose prose-indigo max-w-none text-gray-600">
@@ -285,28 +180,28 @@ const TermsOfService = () => {
           By using Invoke, you agree to these Terms of Service. Please read them carefully.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           1. Acceptance of Terms
         </h3>
         <p className="mb-4">
           By accessing and using Invoke, you accept and agree to be bound by the terms and provision of this agreement.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           2. Use License
         </h3>
         <p className="mb-4">
           Permission is granted to temporarily download one copy of the materials on Invoke for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           3. User Content
         </h3>
         <p className="mb-4">
           You retain ownership of any content you create, upload, or share on Invoke. By using our service, you grant us a license to use, modify, and distribute your content as necessary to provide our services.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           4. Prohibited Activities
         </h3>
         <p className="mb-4">
@@ -320,28 +215,28 @@ const TermsOfService = () => {
           <li>Interfere with or disrupt the service</li>
         </ul>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           5. Privacy
         </h3>
         <p className="mb-4">
           Your privacy is important to us. Please review our Privacy Policy, which also governs your use of the service, to understand our practices.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           6. Termination
         </h3>
         <p className="mb-4">
           We may terminate or suspend your account and bar access to the service immediately, without prior notice or liability, under our sole discretion.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           7. Limitation of Liability
         </h3>
         <p className="mb-4">
           In no event shall Invoke, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages.
         </p>
 
-        <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+        <h3 className="text-2xl font-bold text-text-main mt-8 mb-4">
           8. Contact Us
         </h3>
         <p className="mb-8">
@@ -419,11 +314,11 @@ const PromptsCollection = () => {
   return (
     <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">My Prompts Collection</h1>
+        <h1 className="text-3xl font-bold text-text-main">My Prompts Collection</h1>
         <div className="flex gap-3">
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium text-sm"
+            className="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-medium text-sm"
           >
             <Plus className="w-4 h-4" /> Add Prompt
           </button>
@@ -452,7 +347,7 @@ const PromptsCollection = () => {
               link.click();
               document.body.removeChild(link);
             }}
-            className="px-4 py-2.5 border border-gray-200 text-gray-700 rounded-lg text-sm font-bold hover:bg-gray-50 flex items-center gap-2"
+            className="px-4 py-2.5 border border-gray-200 text-gray-700 rounded-lg text-sm font-bold hover:bg-background flex items-center gap-2"
           >
             <FileSpreadsheet className="w-4 h-4" /> Export CSV
           </button>
@@ -469,14 +364,14 @@ const PromptsCollection = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search prompts..."
-              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+              className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500"
             />
           </div>
         </div>
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+          className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500"
         >
           {categories.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
@@ -487,9 +382,9 @@ const PromptsCollection = () => {
       {/* Prompts Grid */}
       {filteredPrompts.length === 0 ? (
         <div className="text-center py-24 bg-white rounded-3xl border border-gray-200">
-          <FileText className="w-16 h-16 text-indigo-300 mx-auto mb-6" />
-          <h3 className="text-xl font-bold text-gray-900 mb-2">No Prompts Found</h3>
-          <p className="text-gray-500">Start building your personal prompts collection</p>
+          <FileText className="w-16 h-16 text-primary-300 mx-auto mb-6" />
+          <h3 className="text-xl font-bold text-text-main mb-2">No Prompts Found</h3>
+          <p className="text-text-muted">Start building your personal prompts collection</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -497,7 +392,7 @@ const PromptsCollection = () => {
             <div key={prompt.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
-                  <h3 className="font-bold text-gray-900 mb-2">{prompt.title}</h3>
+                  <h3 className="font-bold text-text-main mb-2">{prompt.title}</h3>
                   <div className="flex items-center gap-2 mb-3">
                     <Badge className="bg-blue-100 text-blue-700">{prompt.category}</Badge>
                     {prompt.tags?.map(tag => (
@@ -508,7 +403,7 @@ const PromptsCollection = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleEditPrompt(prompt)}
-                    className="p-2 text-gray-400 hover:text-indigo-600 rounded-lg"
+                    className="p-2 text-gray-400 hover:text-primary-600 rounded-lg"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
@@ -533,8 +428,8 @@ const PromptsCollection = () => {
       {isAddModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
-            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-              <h3 className="font-bold text-gray-900">
+            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
+              <h3 className="font-bold text-text-main">
                 {editingPrompt ? "Edit Prompt" : "Add New Prompt"}
               </h3>
               <button
@@ -542,14 +437,14 @@ const PromptsCollection = () => {
                   setIsAddModalOpen(false);
                   setEditingPrompt(null);
                 }}
-                className="text-gray-400 hover:text-gray-900"
+                className="text-gray-400 hover:text-text-main"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             <form onSubmit={handleAddPrompt} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                   Title
                 </label>
                 <input
@@ -557,11 +452,11 @@ const PromptsCollection = () => {
                   required
                   defaultValue={editingPrompt?.title}
                   placeholder="Enter prompt title..."
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                   Content
                 </label>
                 <textarea
@@ -570,12 +465,12 @@ const PromptsCollection = () => {
                   rows="4"
                   defaultValue={editingPrompt?.content}
                   placeholder="Enter your prompt content..."
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                  <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                     Category
                   </label>
                   <input
@@ -583,24 +478,24 @@ const PromptsCollection = () => {
                     required
                     defaultValue={editingPrompt?.category}
                     placeholder="e.g. Marketing, Planning"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+                  <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                     Tags (comma separated)
                   </label>
                   <input
                     name="tags"
                     defaultValue={editingPrompt?.tags?.join(", ")}
                     placeholder="e.g. AI, Writing, Productivity"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 <Plus className="w-4 h-4" />
                 {editingPrompt ? "Update Prompt" : "Add Prompt"}
@@ -621,22 +516,22 @@ const Footer = ({ onNavigate, user, setNotification }) => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-orange-500 fill-current" />
-              <span className="font-bold text-xl tracking-tight text-gray-900">
+              <span className="font-bold text-xl tracking-tight text-text-main">
                 Invoke
               </span>
             </div>
-            <p className="text-gray-500 text-sm max-w-xs">
-              The ultimate platform for organizing and sharing AI prompts. Built
+            <p className="text-text-muted text-sm max-w-xs">
+              The ultimate platform for orchestrating and deploying AI agent teams. Built
               for the future of work.
             </p>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4">Product</h4>
-            <ul className="space-y-2 text-sm text-gray-500">
+            <h4 className="font-bold text-text-main mb-4">Product</h4>
+            <ul className="space-y-2 text-sm text-text-muted">
               <li>
                 <button
                   onClick={() => onNavigate("spaces")}
-                  className="hover:text-indigo-600 text-left"
+                  className="hover:text-primary-600 text-left"
                 >
                   Spaces
                 </button>
@@ -647,7 +542,7 @@ const Footer = ({ onNavigate, user, setNotification }) => {
                     if (user) onNavigate("library");
                     else setNotification({ message: "Please sign in to view your Library", type: "info" });
                   }}
-                  className="hover:text-indigo-600 text-left"
+                  className="hover:text-primary-600 text-left"
                 >
                   Library
                 </button>
@@ -655,12 +550,12 @@ const Footer = ({ onNavigate, user, setNotification }) => {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm text-gray-500">
+            <h4 className="font-bold text-text-main mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm text-text-muted">
               <li>
                 <button
                   onClick={() => onNavigate("privacy")}
-                  className="hover:text-indigo-600 text-left"
+                  className="hover:text-primary-600 text-left"
                 >
                   Privacy Policy
                 </button>
@@ -668,7 +563,7 @@ const Footer = ({ onNavigate, user, setNotification }) => {
               <li>
                 <button
                   onClick={() => onNavigate("terms")}
-                  className="hover:text-indigo-600 text-left"
+                  className="hover:text-primary-600 text-left"
                 >
                   Terms of Service
                 </button>
@@ -722,11 +617,11 @@ const Chatbot = () => {
               <X className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50 flex flex-col gap-3">
+          <div className="flex-1 overflow-y-auto p-4 bg-background flex flex-col gap-3">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`max-w-[85%] p-3 rounded-2xl text-sm ${msg.sender === "user" ? "bg-indigo-600 text-white self-end rounded-tr-none" : "bg-white border border-gray-200 text-gray-800 self-start rounded-tl-none shadow-sm"}`}
+                className={`max-w-[85%] p-3 rounded-2xl text-sm ${msg.sender === "user" ? "bg-primary-600 text-white self-end rounded-tr-none" : "bg-white border border-gray-200 text-gray-800 self-start rounded-tl-none shadow-sm"}`}
               >
                 {msg.text}
               </div>
@@ -742,7 +637,7 @@ const Chatbot = () => {
             />
             <button
               onClick={handleSendMessage}
-              className="bg-indigo-600 text-white p-2 rounded-full"
+              className="bg-primary-600 text-white p-2 rounded-full"
             >
               <Send className="w-4 h-4" />
             </button>
@@ -768,14 +663,14 @@ const DeleteModal = ({ isOpen, onClose, onConfirm, title }) => {
           <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Trash2 className="w-6 h-6 text-red-600" />
           </div>
-          <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-          <p className="text-gray-500 mb-6 text-sm">
+          <h3 className="text-lg font-bold text-text-main mb-2">{title}</h3>
+          <p className="text-text-muted mb-6 text-sm">
             Are you sure? This action cannot be undone.
           </p>
           <div className="flex gap-3 justify-center">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 font-medium text-sm"
+              className="px-4 py-2 border border-gray-200 rounded-lg text-gray-700 hover:bg-background font-medium text-sm"
             >
               Cancel
             </button>
@@ -797,29 +692,29 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
-        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h3 className="font-bold text-gray-900">Create New Space</h3>
+        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
+          <h3 className="font-bold text-text-main">Create New Space</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-900"
+            className="text-gray-400 hover:text-text-main"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         <form onSubmit={onSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-1">
               Space Name
             </label>
             <input
               name="title"
               required
               placeholder="e.g. My Amazing Project"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all"
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-1">
               Description
             </label>
             <textarea
@@ -827,13 +722,13 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
               required
               rows="2"
               placeholder="What is this space for?"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+              <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                 Category
               </label>
               <select
@@ -851,7 +746,7 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+              <label className="block text-xs font-bold text-text-muted uppercase mb-1">
                 Gradient Theme
               </label>
               <select
@@ -866,7 +761,7 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
                 <option value="from-emerald-500 to-teal-600">
                   Emerald & Teal
                 </option>
-                <option value="from-indigo-500 to-cyan-500">
+                <option value="from-primary-500 to-cyan-500">
                   Indigo & Cyan
                 </option>
                 <option value="from-gray-700 to-gray-900">Dark Mode</option>
@@ -874,8 +769,8 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-2">
+          <div className="bg-background p-3 rounded-lg border border-gray-200">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-2">
               Visibility
             </label>
             <div className="flex gap-4">
@@ -885,7 +780,7 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
                   name="visibility"
                   value="public"
                   defaultChecked
-                  className="text-indigo-600 focus:ring-indigo-500"
+                  className="text-primary-600 focus:ring-primary-500"
                 />
                 <span className="flex items-center gap-1.5 text-sm text-gray-700">
                   <Globe className="w-3 h-3" /> Public
@@ -896,7 +791,7 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
                   type="radio"
                   name="visibility"
                   value="private"
-                  className="text-indigo-600 focus:ring-indigo-500"
+                  className="text-primary-600 focus:ring-primary-500"
                 />
                 <span className="flex items-center gap-1.5 text-sm text-gray-700">
                   <Lock className="w-3 h-3" /> Private
@@ -907,7 +802,7 @@ const NewSpaceModal = ({ isOpen, onClose, onSubmit, availableCategories }) => {
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-2.5 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 text-white font-bold py-2.5 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" /> Create Space
           </button>
@@ -922,18 +817,18 @@ const AddPromptModal = ({ isOpen, onClose, onSubmit }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
-        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h3 className="font-bold text-gray-900">Add Prompt</h3>
+        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
+          <h3 className="font-bold text-text-main">Add Prompt</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-900"
+            className="text-gray-400 hover:text-text-main"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         <form onSubmit={onSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-1">
               Prompt Content
             </label>
             <textarea
@@ -941,12 +836,12 @@ const AddPromptModal = ({ isOpen, onClose, onSubmit }) => {
               required
               rows="4"
               placeholder="Enter your prompt here..."
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-2.5 rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 text-white font-bold py-2.5 rounded-lg hover:bg-primary-700 flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" /> Add Prompt
           </button>
@@ -961,18 +856,18 @@ const EditPromptModal = ({ isOpen, onClose, onSubmit, initialContent }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
-        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h3 className="font-bold text-gray-900">Edit Prompt</h3>
+        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
+          <h3 className="font-bold text-text-main">Edit Prompt</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-900"
+            className="text-gray-400 hover:text-text-main"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         <form onSubmit={onSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-1">
               Prompt Content
             </label>
             <textarea
@@ -980,20 +875,20 @@ const EditPromptModal = ({ isOpen, onClose, onSubmit, initialContent }) => {
               defaultValue={initialContent}
               required
               rows="6"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono text-sm transition-all"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm transition-all"
             />
           </div>
           <div className="flex gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-2.5 border border-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-50"
+              className="flex-1 py-2.5 border border-gray-200 text-gray-700 font-bold rounded-lg hover:bg-background"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 bg-indigo-600 text-white font-bold py-2.5 rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2"
+              className="flex-1 bg-primary-600 text-white font-bold py-2.5 rounded-lg hover:bg-primary-700 flex items-center justify-center gap-2"
             >
               <Check className="w-4 h-4" /> Save Changes
             </button>
@@ -1009,30 +904,30 @@ const NewCategoryModal = ({ isOpen, onClose, onSubmit }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-sm overflow-hidden animate-scale-in">
-        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h3 className="font-bold text-gray-900">Add Category</h3>
+        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
+          <h3 className="font-bold text-text-main">Add Category</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-900"
+            className="text-gray-400 hover:text-text-main"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         <form onSubmit={onSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
+            <label className="block text-xs font-bold text-text-muted uppercase mb-1">
               Category Name
             </label>
             <input
               name="name"
               required
               placeholder="e.g. 3D Models"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-2.5 rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 text-white font-bold py-2.5 rounded-lg hover:bg-primary-700 flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" /> Add Category
           </button>
@@ -1070,21 +965,21 @@ const ManageCategoriesModal = ({
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in flex flex-col max-h-[80vh]">
-        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+        <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-background">
           <div>
-            <h3 className="font-bold text-gray-900">Manage Categories</h3>
-            <p className="text-xs text-gray-500">
+            <h3 className="font-bold text-text-main">Manage Categories</h3>
+            <p className="text-xs text-text-muted">
               Check boxes to show categories.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-900"
+            className="text-gray-400 hover:text-text-main"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
-        <div className="p-2 overflow-y-auto flex-1 bg-gray-50/50">
+        <div className="p-2 overflow-y-auto flex-1 bg-background/50">
           <div className="space-y-2">
             {categories
               .filter((cat) => cat.name !== "All")
@@ -1094,21 +989,21 @@ const ManageCategoriesModal = ({
                 return (
                   <div
                     key={cat.id || cat.name}
-                    className={`flex items-center justify-between p-3 rounded-lg border transition-all ${isHidden ? "bg-gray-50 border-gray-200 opacity-70" : "bg-white border-gray-200 shadow-sm"}`}
+                    className={`flex items-center justify-between p-3 rounded-lg border transition-all ${isHidden ? "bg-background border-gray-200 opacity-70" : "bg-white border-gray-200 shadow-sm"}`}
                   >
                     <div className="flex items-center gap-3 flex-1 overflow-hidden">
                       <input
                         type="checkbox"
                         checked={!isHidden}
                         onChange={() => onToggleVisibility(cat.name)}
-                        className="w-5 h-5 border-2 border-gray-300 rounded text-indigo-600 cursor-pointer"
+                        className="w-5 h-5 border-2 border-gray-300 rounded text-primary-600 cursor-pointer"
                       />
                       {editingId === cat.id ? (
                         <div className="flex items-center gap-2 flex-1">
                           <input
                             value={editName}
                             onChange={(e) => setEditName(e.target.value)}
-                            className="flex-1 px-2 py-1 text-sm border border-indigo-300 rounded"
+                            className="flex-1 px-2 py-1 text-sm border border-primary-300 rounded"
                             autoFocus
                           />
                           <button
@@ -1126,7 +1021,7 @@ const ManageCategoriesModal = ({
                         </div>
                       ) : (
                         <span
-                          className={`font-medium truncate ${isHidden ? "text-gray-500" : "text-gray-800"}`}
+                          className={`font-medium truncate ${isHidden ? "text-text-muted" : "text-gray-800"}`}
                         >
                           {cat.name}
                         </span>
@@ -1138,7 +1033,7 @@ const ManageCategoriesModal = ({
                           <>
                             <button
                               onClick={() => startEdit(cat)}
-                              className="p-1.5 text-gray-400 hover:text-indigo-600 rounded"
+                              className="p-1.5 text-gray-400 hover:text-primary-600 rounded"
                             >
                               <Pencil className="w-4 h-4" />
                             </button>
@@ -1199,7 +1094,7 @@ const SpaceCard = ({
             e.stopPropagation();
             toggleSave(card);
           }}
-          className="p-1.5 rounded-full bg-black/10 hover:bg-white text-white hover:text-indigo-600 backdrop-blur-sm transition-colors"
+          className="p-1.5 rounded-full bg-black/10 hover:bg-white text-white hover:text-primary-600 backdrop-blur-sm transition-colors"
         >
           <Bookmark
             className={`w-4 h-4 ${savedItems.some((i) => i.id === card.id) ? "fill-current" : ""}`}
@@ -1252,125 +1147,7 @@ const SpaceCard = ({
     </div>
   );
 };
-
-const Header = ({
-  user,
-  searchQuery,
-  setSearchQuery,
-  currentView,
-  setCurrentView,
-  setSelectedSpace,
-  handleLogin,
-  handleLogout,
-  setNotification,
-}) => {
-  return (
-    <header className="border-b border-gray-200 sticky top-0 bg-white z-40">
-      <div className="max-w-[1400px] mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-8 flex-1">
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => {
-              setCurrentView("home");
-              setSelectedSpace(null);
-            }}
-          >
-            <Zap className="w-5 h-5 text-orange-500 fill-current" />
-            <span className="font-bold text-xl tracking-tight text-gray-900">
-              Invoke
-            </span>
-          </div>
-
-          <div className="hidden md:flex relative w-full max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search spaces, authors..."
-              className="w-full pl-9 pr-4 py-1.5 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-indigo-500 transition-all bg-white"
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <div className="hidden lg:flex items-center gap-6">
-            <button
-              onClick={() => {
-                setCurrentView("home");
-                setSelectedSpace(null);
-              }}
-              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "home" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => {
-                setCurrentView("spaces");
-                setSelectedSpace(null);
-              }}
-              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "spaces" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
-            >
-              Spaces
-            </button>
-            <button
-              onClick={() => {
-                if (user) {
-                  setCurrentView("library");
-                  setSelectedSpace(null);
-                } else {
-                  setNotification({ message: "Please sign in to view your Library", type: "info" });
-                }
-              }}
-              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "library" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
-            >
-              Library
-            </button>
-            <button
-              onClick={() => {
-                setCurrentView("tools");
-                setSelectedSpace(null);
-              }}
-              className={`flex items-center gap-1.5 text-sm font-bold ${currentView === "tools" ? "text-gray-900" : "text-gray-500 hover:text-gray-900"}`}
-            >
-              Tools
-            </button>
-          </div>
-
-          {user ? (
-            <div className="flex items-center gap-3">
-              <div className="text-right hidden sm:block">
-                <div className="text-sm font-bold text-gray-900 leading-none">
-                  {user.displayName}
-                </div>
-              </div>
-              <Avatar
-                src={user.photoURL || `https://api.dicebear.com/9.x/avataaars/svg?seed=${user.uid}`}
-                alt="User"
-                className="w-8 h-8 rounded-full border border-gray-200"
-                fallbackName={user.displayName}
-                size={32}
-              />
-              <button
-                onClick={handleLogout}
-                className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={handleLogin}
-              className="bg-gray-900 hover:bg-black text-white px-5 py-2 rounded-full font-medium text-sm transition-transform active:scale-95"
-            >
-              Sign In
-            </button>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-};
+// Header extracted to src/components/layout/Header.jsx
 
 const MAIN_CATEGORIES = [
   { name: "All", icon: LayoutGrid, isMain: true, id: "main-all" },
@@ -1386,6 +1163,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState("home");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedSpace, setSelectedSpace] = useState(null);
+  const [agentPack, setAgentPack] = useState([]);
 
   const [spacePrompts, setSpacePrompts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -1764,7 +1542,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
+    <div className="min-h-screen bg-white font-sans text-text-main flex flex-col">
       <NewSpaceModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -1833,19 +1611,41 @@ export default function App() {
         {/* VIEW: PROMPTS COLLECTION */}
         {!selectedSpace && currentView === "prompts" && <PromptsCollection />}
 
-        {/* VIEW: TOOLS / MCP INTEGRATIONS */}
-        {!selectedSpace && currentView === "tools" && <ToolsPage />}
+        {/* VIEW: TOOLS / ENDPOINTS */}
+        {!selectedSpace && currentView === "endpoints" && <EndpointsPage setNotification={setNotification} />}
+
+        {/* VIEW: AGENT MARKETPLACE */}
+        {!selectedSpace && currentView === "agents" && (
+          <AgentMarketplace 
+            user={user} 
+            setNotification={setNotification} 
+            onNavigate={(view, pack) => {
+              if (pack) setAgentPack(pack);
+              setCurrentView(view);
+            }} 
+          />
+        )}
+
+        {/* VIEW: AGENT CONFIGURATION */}
+        {!selectedSpace && currentView === "configure_agent" && (
+          <AgentConfiguration 
+            pack={agentPack} 
+            user={user} 
+            setNotification={setNotification} 
+            onNavigate={(view) => setCurrentView(view)} 
+          />
+        )}
 
         {/* VIEW: SPACE DETAIL */}
         {selectedSpace && (
           <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in max-w-5xl mx-auto">
-            <div className="flex items-center gap-2 mb-6 text-sm text-gray-500">
+            <div className="flex items-center gap-2 mb-6 text-sm text-text-muted">
               <button
                 onClick={() => {
                   setSelectedSpace(null);
                   setCurrentView("spaces");
                 }}
-                className="hover:text-indigo-600 font-medium"
+                className="hover:text-primary-600 font-medium"
               >
                 Spaces
               </button>
@@ -1927,7 +1727,7 @@ export default function App() {
             </div>
 
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-text-main">
                 Prompts Collection
               </h2>
               <div className="flex gap-4">
@@ -1962,7 +1762,7 @@ export default function App() {
                       ? setIsAddPromptModalOpen(true)
                       : setNotification({ message: "Login needed", type: "info" })
                   }
-                  className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 flex items-center gap-2 shadow-sm"
+                  className="px-5 py-2.5 bg-primary-600 text-white rounded-lg text-sm font-bold hover:bg-primary-700 flex items-center gap-2 shadow-sm"
                 >
                   <Plus className="w-4 h-4" /> Add Prompt
                 </button>
@@ -1988,7 +1788,7 @@ export default function App() {
                             type: "success",
                           });
                         }}
-                        className="p-2 text-gray-400 hover:text-indigo-600 bg-gray-50 rounded-lg"
+                        className="p-2 text-gray-400 hover:text-primary-600 bg-background rounded-lg"
                       >
                         <Copy className="w-4 h-4" />
                       </button>
@@ -1998,7 +1798,7 @@ export default function App() {
                         <>
                           <button
                             onClick={() => handleEditClick(prompt)}
-                            className="p-2 text-gray-400 hover:text-indigo-600 bg-gray-50 rounded-lg"
+                            className="p-2 text-gray-400 hover:text-primary-600 bg-background rounded-lg"
                           >
                             <Pencil className="w-4 h-4" />
                           </button>
@@ -2009,7 +1809,7 @@ export default function App() {
                                 id: prompt.id,
                               })
                             }
-                            className="p-2 text-gray-400 hover:text-red-600 bg-gray-50 rounded-lg"
+                            className="p-2 text-gray-400 hover:text-red-600 bg-background rounded-lg"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -2020,7 +1820,7 @@ export default function App() {
                   <div className="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
                     <span>Added by {prompt.author}</span>
                     <div className="flex items-center gap-3">
-                      <button className="hover:text-indigo-600">
+                      <button className="hover:text-primary-600">
                         <Sparkles className="w-4 h-4" />
                       </button>
                       <span>
@@ -2040,15 +1840,15 @@ export default function App() {
             <div className="mb-8">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-indigo-600 rounded-lg text-white">
+                  <div className="p-2 bg-primary-600 rounded-lg text-white">
                     <LayoutGrid className="w-6 h-6" />
                   </div>
-                  <h1 className="text-2xl font-bold text-gray-900">Spaces</h1>
+                  <h1 className="text-2xl font-bold text-text-main">Spaces</h1>
                 </div>
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="px-4 py-2 bg-indigo-50 text-indigo-700 font-bold rounded-lg text-sm flex items-center gap-2"
+                    className="px-4 py-2 bg-primary-50 text-primary-700 font-bold rounded-lg text-sm flex items-center gap-2"
                   >
                     <Plus className="w-4 h-4" /> New Space
                   </button>
@@ -2086,7 +1886,7 @@ export default function App() {
               {filteredCards.length === 0 ? (
                 <div className="py-24 text-center col-span-full border-2 border-dashed border-gray-200 rounded-2xl">
                   <Search className="w-8 h-8 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold text-text-main">
                     No spaces found
                   </h3>
                 </div>
@@ -2111,58 +1911,101 @@ export default function App() {
         {!selectedSpace && currentView === "library" && (
           <div className="max-w-[1400px] mx-auto px-4 py-8 animate-fade-in">
             <div className="flex items-center justify-between mb-8">
-              <h1 className="text-3xl font-bold text-gray-900">My Library</h1>
+              <h1 className="text-3xl font-bold text-text-main">My Library</h1>
             </div>
-            {savedItems.length === 0 ? (
-              <div className="py-24 text-center bg-white rounded-3xl border border-gray-200">
-                <Bookmark className="w-10 h-10 text-indigo-300 mx-auto mb-6" />
-                <h3 className="text-xl font-bold">Library Empty</h3>
-              </div>
-            ) : (
+            
+            <div className="mb-12">
+              <h2 className="text-xl font-bold text-text-main mb-4 flex items-center gap-2">
+                <Box className="w-5 h-5 text-primary-600" /> Deployed Agent Teams
+              </h2>
               <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-                {savedItems.map((item, idx) => (
-                  <div
-                    key={item.id}
-                    className={`p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-gray-50 ${idx !== savedItems.length - 1 ? "border-b border-gray-100" : ""}`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-bold`}
-                      >
-                        {item.title.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 text-lg">
-                          {item.title}
-                        </h4>
-                        <div className="flex gap-2 text-xs text-gray-500 mt-1">
-                          <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-medium">
-                            {item.category}
-                          </span>
-                        </div>
-                      </div>
+                <div className="p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-background border-b border-gray-100">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-600 to-purple-600 flex items-center justify-center text-white">
+                      <Zap className="w-6 h-6" />
                     </div>
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => {
-                          setSelectedSpace(item);
-                          setCurrentView("spaces");
-                        }}
-                        className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-100"
-                      >
-                        Open
-                      </button>
-                      <button
-                        onClick={() => toggleSave(item)}
-                        className="p-2 text-gray-400 hover:text-red-600"
-                      >
-                        <Trash2 className="w-5 h-5" />
-                      </button>
+                    <div>
+                      <h4 className="font-bold text-text-main text-lg">
+                        Advisory & Engineering Pack
+                      </h4>
+                      <div className="flex gap-2 text-xs text-text-muted mt-1">
+                        <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded font-bold">
+                          Active Endpoint
+                        </span>
+                        <span>2 Agents • 3 Tools connected</span>
+                      </div>
                     </div>
                   </div>
-                ))}
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setCurrentView("endpoints")}
+                      className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-100"
+                    >
+                      Manage API
+                    </button>
+                    <button className="p-2 text-gray-400 hover:text-primary-600">
+                      <Settings className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
               </div>
-            )}
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold text-text-main mb-4 flex items-center gap-2">
+                <Bookmark className="w-5 h-5 text-text-muted" /> Saved Prompts & Spaces
+              </h2>
+              {savedItems.length === 0 ? (
+                <div className="py-12 text-center bg-white rounded-3xl border border-gray-200">
+                  <Bookmark className="w-10 h-10 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-text-muted">No saved spaces</h3>
+                </div>
+              ) : (
+                <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                  {savedItems.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      className={`p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-background ${idx !== savedItems.length - 1 ? "border-b border-gray-100" : ""}`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-bold`}
+                        >
+                          {item.title.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-text-main text-lg">
+                            {item.title}
+                          </h4>
+                          <div className="flex gap-2 text-xs text-text-muted mt-1">
+                            <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600 font-medium">
+                              {item.category}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => {
+                            setSelectedSpace(item);
+                            setCurrentView("spaces");
+                          }}
+                          className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-bold text-gray-700 hover:bg-gray-100"
+                        >
+                          Open
+                        </button>
+                        <button
+                          onClick={() => toggleSave(item)}
+                          className="p-2 text-gray-400 hover:text-red-600"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </main>
