@@ -112,31 +112,31 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen pb-24 font-sans text-gray-900">
+    <div className="bg-background min-h-screen pb-24 font-sans text-text-main">
       {/* Header / Progress Bar */}
       <div className="bg-white border-b border-gray-200 sticky top-16 z-30">
         <div className="max-w-[1200px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Configure Team</h1>
-              <p className="text-sm text-gray-500">{pack.length} agents selected</p>
+              <h1 className="text-xl font-bold text-text-main">Configure Team</h1>
+              <p className="text-sm text-text-muted">{pack.length} agents selected</p>
             </div>
             
             {/* Steps Indicator */}
             <div className="hidden md:flex items-center gap-2">
               {steps.map((s, i) => (
                 <React.Fragment key={s.num}>
-                  <div className={`flex items-center gap-2 ${currentStep >= s.num ? "text-indigo-600" : "text-gray-400"}`}>
+                  <div className={`flex items-center gap-2 ${currentStep >= s.num ? "text-primary-600" : "text-gray-400"}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                      currentStep === s.num ? "bg-indigo-600 text-white" : 
-                      currentStep > s.num ? "bg-indigo-100 text-indigo-600" : "bg-gray-100 text-gray-400"
+                      currentStep === s.num ? "bg-primary-600 text-white" : 
+                      currentStep > s.num ? "bg-primary-100 text-primary-600" : "bg-gray-100 text-gray-400"
                     }`}>
                       {currentStep > s.num ? <CheckCircle2 className="w-5 h-5" /> : s.num}
                     </div>
                     <span className="font-bold text-sm">{s.title}</span>
                   </div>
                   {i < steps.length - 1 && (
-                    <div className={`w-12 h-px ${currentStep > s.num ? "bg-indigo-600" : "bg-gray-200"}`}></div>
+                    <div className={`w-12 h-px ${currentStep > s.num ? "bg-primary-600" : "bg-gray-200"}`}></div>
                   )}
                 </React.Fragment>
               ))}
@@ -151,8 +151,8 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
         {currentStep === 1 && (
           <div className="space-y-8 animate-fade-in">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Feed Your Agents</h2>
-              <p className="text-gray-500">Provide the data and context your agents need to perform their tasks accurately.</p>
+              <h2 className="text-2xl font-bold text-text-main mb-2">Feed Your Agents</h2>
+              <p className="text-text-muted">Provide the data and context your agents need to perform their tasks accurately.</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -160,16 +160,16 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
               <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-blue-50 text-blue-600 rounded-lg"><Globe className="w-5 h-5" /></div>
-                  <h3 className="font-bold text-gray-900">Web Scraping</h3>
+                  <h3 className="font-bold text-text-main">Web Scraping</h3>
                 </div>
-                <p className="text-sm text-gray-500 mb-4">Extract knowledge from any public URL.</p>
+                <p className="text-sm text-text-muted mb-4">Extract knowledge from any public URL.</p>
                 <div className="flex gap-2">
                   <input 
                     type="url" 
                     placeholder="https://example.com/docs" 
                     value={scrapeUrl}
                     onChange={(e) => setScrapeUrl(e.target.value)}
-                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-indigo-500"
+                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm outline-none focus:border-primary-500"
                   />
                   <button 
                     onClick={handleScrape}
@@ -185,24 +185,24 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
               <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-purple-50 text-purple-600 rounded-lg"><UploadCloud className="w-5 h-5" /></div>
-                  <h3 className="font-bold text-gray-900">Document Upload</h3>
+                  <h3 className="font-bold text-text-main">Document Upload</h3>
                 </div>
-                <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-indigo-500 transition-colors cursor-pointer">
+                <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-primary-500 transition-colors cursor-pointer">
                   <UploadCloud className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-sm font-bold text-gray-900">Click or drag files here</p>
-                  <p className="text-xs text-gray-500 mt-1">PDF, DOCX, CSV up to 50MB</p>
+                  <p className="text-sm font-bold text-text-main">Click or drag files here</p>
+                  <p className="text-xs text-text-muted mt-1">PDF, DOCX, CSV up to 50MB</p>
                 </div>
               </div>
             </div>
 
             {/* Integrations */}
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-              <h3 className="font-bold text-gray-900 mb-4">Knowledge Base Integrations</h3>
+              <h3 className="font-bold text-text-main mb-4">Knowledge Base Integrations</h3>
               <div className="grid sm:grid-cols-3 gap-4">
                 {['Notion', 'Google Drive', 'Confluence'].map(integration => (
                   <div key={integration} className="border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:border-gray-300 transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center"><Link className="w-4 h-4 text-gray-500"/></div>
+                      <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center"><Link className="w-4 h-4 text-text-muted"/></div>
                       <span className="font-bold text-sm">{integration}</span>
                     </div>
                     <button className="text-xs font-bold bg-gray-100 text-gray-600 px-3 py-1.5 rounded hover:bg-gray-200">Connect</button>
@@ -213,16 +213,16 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
 
             {/* Ingested Data List */}
             {scrapedData.length > 0 && (
-              <div className="bg-indigo-50 border border-indigo-100 p-6 rounded-2xl">
-                <h3 className="font-bold text-indigo-900 mb-4 text-sm uppercase tracking-wider">Indexed Sources</h3>
+              <div className="bg-primary-50 border border-primary-100 p-6 rounded-2xl">
+                <h3 className="font-bold text-primary-900 mb-4 text-sm uppercase tracking-wider">Indexed Sources</h3>
                 <div className="space-y-2">
                   {scrapedData.map((data, i) => (
-                    <div key={i} className="bg-white border border-indigo-100 p-3 rounded-lg flex items-center justify-between">
+                    <div key={i} className="bg-white border border-primary-100 p-3 rounded-lg flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <FileText className="w-4 h-4 text-indigo-500" />
+                        <FileText className="w-4 h-4 text-primary-500" />
                         <div>
-                          <div className="text-sm font-bold text-gray-900 truncate max-w-[300px]">{data.url}</div>
-                          <div className="text-xs text-gray-500">{data.pages} pages • {data.type}</div>
+                          <div className="text-sm font-bold text-text-main truncate max-w-[300px]">{data.url}</div>
+                          <div className="text-xs text-text-muted">{data.pages} pages • {data.type}</div>
                         </div>
                       </div>
                       <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -238,19 +238,19 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
         {currentStep === 2 && (
           <div className="space-y-8 animate-fade-in">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Build Your Pack</h2>
-              <p className="text-gray-500">Equip your team with specific skills, external tools, and memory architectures.</p>
+              <h2 className="text-2xl font-bold text-text-main mb-2">Build Your Pack</h2>
+              <p className="text-text-muted">Equip your team with specific skills, external tools, and memory architectures.</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Skills & Tools */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Cpu className="w-5 h-5 text-indigo-600" /> Core Skills</h3>
+                  <h3 className="font-bold text-text-main mb-4 flex items-center gap-2"><Cpu className="w-5 h-5 text-primary-600" /> Core Skills</h3>
                   <div className="space-y-2">
                     {['Web Research', 'Document Analysis', 'Data Extraction', 'Code Generation'].map(skill => (
-                      <label key={skill} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg bg-white cursor-pointer hover:border-indigo-300">
-                        <input type="checkbox" className="w-4 h-4 text-indigo-600 rounded" />
+                      <label key={skill} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg bg-white cursor-pointer hover:border-primary-300">
+                        <input type="checkbox" className="w-4 h-4 text-primary-600 rounded" />
                         <span className="text-sm font-medium text-gray-700">{skill}</span>
                       </label>
                     ))}
@@ -258,7 +258,7 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Link className="w-5 h-5 text-indigo-600" /> External Tools</h3>
+                  <h3 className="font-bold text-text-main mb-4 flex items-center gap-2"><Link className="w-5 h-5 text-primary-600" /> External Tools</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { name: 'SerpAPI', desc: 'Google Search' },
@@ -266,10 +266,10 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                       { name: 'Pinecone', desc: 'Vector DB' },
                       { name: 'Slack', desc: 'Notifications' }
                     ].map(tool => (
-                      <label key={tool.name} className="flex flex-col gap-1 p-3 border border-gray-200 rounded-lg bg-white cursor-pointer hover:border-indigo-300 relative">
-                        <input type="checkbox" className="absolute top-3 right-3 w-4 h-4 text-indigo-600 rounded" />
-                        <span className="text-sm font-bold text-gray-900">{tool.name}</span>
-                        <span className="text-xs text-gray-500">{tool.desc}</span>
+                      <label key={tool.name} className="flex flex-col gap-1 p-3 border border-gray-200 rounded-lg bg-white cursor-pointer hover:border-primary-300 relative">
+                        <input type="checkbox" className="absolute top-3 right-3 w-4 h-4 text-primary-600 rounded" />
+                        <span className="text-sm font-bold text-text-main">{tool.name}</span>
+                        <span className="text-xs text-text-muted">{tool.desc}</span>
                       </label>
                     ))}
                   </div>
@@ -278,7 +278,7 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
 
               {/* Memory Config */}
               <div>
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Database className="w-5 h-5 text-indigo-600" /> Memory Layers</h3>
+                <h3 className="font-bold text-text-main mb-4 flex items-center gap-2"><Database className="w-5 h-5 text-primary-600" /> Memory Layers</h3>
                 <div className="space-y-3">
                   {[
                     { id: 'shared', title: 'Shared Memory', desc: 'Agents can access each other\'s context and findings.' },
@@ -289,17 +289,17 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                       key={mem.id}
                       onClick={() => setMemoryType(mem.id)}
                       className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                        memoryType === mem.id ? "border-indigo-600 bg-indigo-50" : "border-gray-200 bg-white hover:border-gray-300"
+                        memoryType === mem.id ? "border-primary-600 bg-primary-50" : "border-gray-200 bg-white hover:border-gray-300"
                       }`}
                     >
                       <div className="flex justify-between items-center mb-1">
-                        <span className="font-bold text-gray-900">{mem.title}</span>
-                        {memoryType === mem.id && <CheckCircle2 className="w-4 h-4 text-indigo-600" />}
+                        <span className="font-bold text-text-main">{mem.title}</span>
+                        {memoryType === mem.id && <CheckCircle2 className="w-4 h-4 text-primary-600" />}
                       </div>
-                      <p className="text-sm text-gray-500">{mem.desc}</p>
+                      <p className="text-sm text-text-muted">{mem.desc}</p>
                     </div>
                   ))}
-                  <button className="w-full p-3 border border-dashed border-gray-300 text-gray-600 text-sm font-bold rounded-xl hover:border-indigo-500 hover:text-indigo-600 flex items-center justify-center gap-2 transition-colors">
+                  <button className="w-full p-3 border border-dashed border-gray-300 text-gray-600 text-sm font-bold rounded-xl hover:border-primary-500 hover:text-primary-600 flex items-center justify-center gap-2 transition-colors">
                     <Plus className="w-4 h-4" /> Add Custom Memory Layer
                   </button>
                 </div>
@@ -312,14 +312,14 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
         {currentStep === 3 && (
           <div className="space-y-8 animate-fade-in">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Behavior & Tuning</h2>
-              <p className="text-gray-500">Fine-tune intelligence, autonomy, and establish safety guardrails.</p>
+              <h2 className="text-2xl font-bold text-text-main mb-2">Behavior & Tuning</h2>
+              <p className="text-text-muted">Fine-tune intelligence, autonomy, and establish safety guardrails.</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Sliders */}
               <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
-                <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-2"><Settings className="w-5 h-5 text-indigo-600" /> Performance Tuning</h3>
+                <h3 className="font-bold text-text-main flex items-center gap-2 mb-2"><Settings className="w-5 h-5 text-primary-600" /> Performance Tuning</h3>
                 
                 {[
                   { label: "Intelligence Level", value: intelligence, set: setIntelligence },
@@ -337,7 +337,7 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                       min="0" max="100" 
                       value={slider.value}
                       onChange={(e) => slider.set(e.target.value)}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
                     />
                   </div>
                 ))}
@@ -346,11 +346,11 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
               <div className="space-y-6">
                 {/* Personality */}
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-4"><Brain className="w-5 h-5 text-indigo-600" /> Personality</h3>
+                  <h3 className="font-bold text-text-main flex items-center gap-2 mb-4"><Brain className="w-5 h-5 text-primary-600" /> Personality</h3>
                   <select 
                     value={personality}
                     onChange={(e) => setPersonality(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-indigo-500 font-medium text-sm mb-4"
+                    className="w-full px-4 py-3 bg-background border border-gray-200 rounded-xl outline-none focus:border-primary-500 font-medium text-sm mb-4"
                   >
                     <option value="Professional">Professional (Formal, precise)</option>
                     <option value="Friendly">Friendly (Warm, approachable)</option>
@@ -359,14 +359,14 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                     <option value="Creative">Creative (Innovative, out-of-box)</option>
                     <option value="Custom">Custom Persona...</option>
                   </select>
-                  <button className="w-full py-2 bg-indigo-50 text-indigo-700 text-sm font-bold rounded-lg hover:bg-indigo-100 transition-colors">
+                  <button className="w-full py-2 bg-primary-50 text-primary-700 text-sm font-bold rounded-lg hover:bg-primary-100 transition-colors">
                     Inject Custom Prompt (Coming Soon)
                   </button>
                 </div>
 
                 {/* Guardrails */}
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-4"><ShieldAlert className="w-5 h-5 text-red-500" /> Guardrails</h3>
+                  <h3 className="font-bold text-text-main flex items-center gap-2 mb-4"><ShieldAlert className="w-5 h-5 text-red-500" /> Guardrails</h3>
                   <div className="space-y-3">
                     {[
                       { id: 'pii', label: 'PII Protection', desc: 'Block personal data exposure' },
@@ -376,8 +376,8 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                     ].map(rail => (
                       <div key={rail.id} className="flex items-center justify-between">
                         <div>
-                          <div className="text-sm font-bold text-gray-900">{rail.label}</div>
-                          <div className="text-xs text-gray-500">{rail.desc}</div>
+                          <div className="text-sm font-bold text-text-main">{rail.label}</div>
+                          <div className="text-xs text-text-muted">{rail.desc}</div>
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
                           <input 
@@ -386,7 +386,7 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
                             onChange={() => setGuardrails({...guardrails, [rail.id]: !guardrails[rail.id]})}
                             className="sr-only peer" 
                           />
-                          <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                          <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-600"></div>
                         </label>
                       </div>
                     ))}
@@ -401,8 +401,8 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
         {currentStep === 4 && (
           <div className="space-y-8 animate-fade-in">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Simulation & Deployment</h2>
-              <p className="text-gray-500">Test your agent configuration before generating deployment credentials.</p>
+              <h2 className="text-2xl font-bold text-text-main mb-2">Simulation & Deployment</h2>
+              <p className="text-text-muted">Test your agent configuration before generating deployment credentials.</p>
             </div>
 
             {/* Terminal Simulator */}
@@ -440,33 +440,33 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
 
             {/* Deployment Options */}
             <div className={`transition-all duration-700 ${simStatus === 'complete' ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-4 pointer-events-none'}`}>
-              <h3 className="font-bold text-gray-900 mb-4 text-lg">Deployment Ready</h3>
+              <h3 className="font-bold text-text-main mb-4 text-lg">Deployment Ready</h3>
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-white p-5 rounded-xl border-2 border-indigo-600 shadow-md relative">
-                  <div className="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">Recommended</div>
-                  <Code className="w-6 h-6 text-indigo-600 mb-3" />
-                  <h4 className="font-bold text-gray-900 mb-1">SDK Integration</h4>
-                  <p className="text-xs text-gray-500 mb-4">Native libraries for Node.js, Python, and Go.</p>
-                  <button className="w-full py-2 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-lg hover:bg-indigo-100">View Docs</button>
+                <div className="bg-white p-5 rounded-xl border-2 border-primary-600 shadow-md relative">
+                  <div className="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">Recommended</div>
+                  <Code className="w-6 h-6 text-primary-600 mb-3" />
+                  <h4 className="font-bold text-text-main mb-1">SDK Integration</h4>
+                  <p className="text-xs text-text-muted mb-4">Native libraries for Node.js, Python, and Go.</p>
+                  <button className="w-full py-2 bg-primary-50 text-primary-700 text-xs font-bold rounded-lg hover:bg-primary-100">View Docs</button>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-gray-200 hover:border-gray-300">
                   <Globe className="w-6 h-6 text-gray-600 mb-3" />
-                  <h4 className="font-bold text-gray-900 mb-1">REST API</h4>
-                  <p className="text-xs text-gray-500 mb-4">Direct API access with full control via standard HTTP.</p>
-                  <button className="w-full py-2 bg-gray-50 text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-100">Generate Key</button>
+                  <h4 className="font-bold text-text-main mb-1">REST API</h4>
+                  <p className="text-xs text-text-muted mb-4">Direct API access with full control via standard HTTP.</p>
+                  <button className="w-full py-2 bg-background text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-100">Generate Key</button>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-gray-200 hover:border-gray-300">
                   <Zap className="w-6 h-6 text-gray-600 mb-3" />
-                  <h4 className="font-bold text-gray-900 mb-1">Webhook Trigger</h4>
-                  <p className="text-xs text-gray-500 mb-4">Event-driven automation triggered by external systems.</p>
-                  <button className="w-full py-2 bg-gray-50 text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-100">Setup URL</button>
+                  <h4 className="font-bold text-text-main mb-1">Webhook Trigger</h4>
+                  <p className="text-xs text-text-muted mb-4">Event-driven automation triggered by external systems.</p>
+                  <button className="w-full py-2 bg-background text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-100">Setup URL</button>
                 </div>
               </div>
               
               <div className="mt-8 p-4 bg-gray-900 rounded-xl">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-xs font-bold text-gray-400">Quick Start (Node.js)</span>
-                  <button className="text-xs text-indigo-400 hover:text-indigo-300">Copy Code</button>
+                  <button className="text-xs text-primary-400 hover:text-primary-300">Copy Code</button>
                 </div>
                 <pre className="text-xs text-gray-300 font-mono overflow-x-auto whitespace-pre-wrap">
                   {`import { InvokeThoughts } from '@invoke/sdk';\n\nconst client = new InvokeThoughts({ apiKey: process.env.INVOKE_API_KEY });\n\nconst result = await client.teams.run({\n  team: 'pack-${pack.map(p => p.id).join('-').substring(0, 8)}',\n  task: 'Analyze competitor pricing strategies'\n});\n\nconsole.log(result.output);`}
@@ -485,14 +485,14 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
           {currentStep > 1 ? (
             <button 
               onClick={() => setCurrentStep(prev => prev - 1)}
-              className="px-6 py-2.5 border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-colors flex items-center gap-2"
+              className="px-6 py-2.5 border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-background transition-colors flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
           ) : (
             <button 
               onClick={() => onNavigate('agents')}
-              className="px-6 py-2.5 text-gray-500 font-bold hover:text-gray-900 transition-colors"
+              className="px-6 py-2.5 text-text-muted font-bold hover:text-text-main transition-colors"
             >
               Cancel
             </button>
@@ -501,7 +501,7 @@ const AgentConfiguration = ({ pack, onNavigate, user, setNotification }) => {
           {currentStep < totalSteps ? (
             <button 
               onClick={() => setCurrentStep(prev => prev + 1)}
-              className="px-8 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200 flex items-center gap-2"
+              className="px-8 py-2.5 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-200 flex items-center gap-2"
             >
               Continue <ArrowRight className="w-4 h-4" />
             </button>

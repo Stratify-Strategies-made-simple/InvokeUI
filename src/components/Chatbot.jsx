@@ -44,9 +44,9 @@ export const Chatbot = () => {
              <span>Invoke Assist</span>
              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white"><X className="w-4 h-4" /></button>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50 flex flex-col gap-3">
+          <div className="flex-1 overflow-y-auto p-4 bg-background flex flex-col gap-3">
             {messages.map((msg, index) => (
-              <div key={index} className={`max-w-[85%] p-3 rounded-2xl text-sm ${msg.sender === 'user' ? 'bg-indigo-600 text-white self-end rounded-tr-none' : 'bg-white border border-gray-200 text-gray-800 self-start rounded-tl-none shadow-sm'}`}>
+              <div key={index} className={`max-w-[85%] p-3 rounded-2xl text-sm ${msg.sender === 'user' ? 'bg-primary-600 text-white self-end rounded-tr-none' : 'bg-white border border-gray-200 text-gray-800 self-start rounded-tl-none shadow-sm'}`}>
                 {msg.text}
               </div>
             ))}
@@ -58,9 +58,9 @@ export const Chatbot = () => {
               onChange={(e) => setInput(e.target.value)} 
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()} 
               placeholder="Type 'price', 'features'..." 
-              className="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+              className="flex-1 px-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary-500" 
             />
-            <button onClick={handleSendMessage} className="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+            <button onClick={handleSendMessage} className="bg-primary-600 hover:bg-primary-700 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
                <Send className="w-4 h-4 ml-0.5" />
             </button>
           </div>
